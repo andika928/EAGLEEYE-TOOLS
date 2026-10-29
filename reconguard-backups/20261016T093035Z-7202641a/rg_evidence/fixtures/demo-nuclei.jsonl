@@ -1,0 +1,3 @@
+{"template-id":"reconguard-lab-marker","info":{"name":"Deliberate local lab marker","severity":"info"},"type":"http","matched-at":"http://127.0.0.1:8080/reconguard-lab-marker","matcher-name":"lab-marker","timestamp":"SIMULATED","response":"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nRECONGUARD_LAB_MARKER_V1"}
+{"template-id":"demo-version-only","info":{"name":"SIMULATED version-based CVE candidate","severity":"high"},"type":"http","matched-at":"http://127.0.0.1:8080/","timestamp":"SIMULATED"}
+{"template-id":"demo-outside-scope","info":{"name":"SIMULATED external observation","severity":"info"},"type":"http","matched-at":"https://outside.invalid/","timestamp":"SIMULATED"}

@@ -1,0 +1,14 @@
+{
+  "id": "0a4897ca0b2b4f6d80ef15c70f3236d8",
+  "target": "https://crypto.com:443/price",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "crypto.com",
+  "started_at": "2026-10-26T06:00:29.359674+00:00",
+  "state": "failed",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'crypto.com'. (_ssl.c:1144)",
+  "finished_at": "2026-10-26T06:00:31.659279+00:00"
+}

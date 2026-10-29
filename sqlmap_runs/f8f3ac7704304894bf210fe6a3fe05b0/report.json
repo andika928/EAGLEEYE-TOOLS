@@ -1,0 +1,66 @@
+{
+  "id": "f8f3ac7704304894bf210fe6a3fe05b0",
+  "target": "https://test-escalations.vintedgo.com:443/login",
+  "parameter": "sysparm_url",
+  "parameters": [
+    "sysparm_url"
+  ],
+  "scope_host": "test-escalations.vintedgo.com",
+  "started_at": "2026-10-18T23:34:50.195099+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "Baseline unreachable, blocked or redirected. Inspect the recorded status/error; SQLmap was not started.",
+  "discovery_notes": [
+    "POST form skipped; this URL-only tool tests GET inputs."
+  ],
+  "discovered_endpoints": [
+    "https://test-escalations.vintedgo.com:443/$pwd_reset.do?sysparm_url=ss_default",
+    "https://test-escalations.vintedgo.com:443/slushbucket.do?sysparm_referring_url=login&sysparm_view="
+  ],
+  "scan_target": "https://test-escalations.vintedgo.com:443/$pwd_reset.do?sysparm_url=ss_default",
+  "baseline": [
+    {
+      "url": "https://test-escalations.vintedgo.com:443/$pwd_reset.do?sysparm_url=ss_default",
+      "checked_at": "2026-10-18T23:34:51.986343+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested."
+      ],
+      "status": 301,
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Server": "snow_adc",
+        "Location": "/$pwd_error.do?jvar_stage=1&sysparm_process_id=c6b0c20667100200a5a0f3b457415ad5",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 38523,
+      "body_truncated": false,
+      "body_sample_sha256": "37617a2f7ffe4d932c09ae9deb5f3b1e19491bf658e08a8d1f062b7a24182f48",
+      "elapsed_ms": 1549
+    },
+    {
+      "url": "https://test-escalations.vintedgo.com:443/$pwd_reset.do?sysparm_url=ss_default",
+      "checked_at": "2026-10-18T23:34:53.536274+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested."
+      ],
+      "status": 301,
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Server": "snow_adc",
+        "Location": "/$pwd_error.do?jvar_stage=1&sysparm_process_id=c6b0c20667100200a5a0f3b457415ad5",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 38524,
+      "body_truncated": false,
+      "body_sample_sha256": "c66292f783b2e591b1a612c893389ad4672c761820c7cbdd1319f3b67709ade4",
+      "elapsed_ms": 1574
+    }
+  ],
+  "finished_at": "2026-10-18T23:34:55.111029+00:00"
+}

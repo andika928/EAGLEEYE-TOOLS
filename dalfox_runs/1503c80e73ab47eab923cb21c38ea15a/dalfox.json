@@ -1,0 +1,32 @@
+{
+  "findings": [],
+  "meta": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": true,
+    "scan_duration_ms": 112466,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "incomplete",
+        "target": "https://www.vinted.com/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401",
+        "waf": {
+          "detected": [
+            {
+              "confidence": 0.949999988079071,
+              "evidence": "Server: cloudflare",
+              "type": "Cloudflare"
+            }
+          ]
+        }
+      }
+    ],
+    "targets": [
+      "https://www.vinted.com:443/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 82
+  }
+}

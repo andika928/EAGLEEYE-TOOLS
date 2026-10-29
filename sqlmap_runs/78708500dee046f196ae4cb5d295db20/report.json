@@ -1,0 +1,16 @@
+{
+  "id": "78708500dee046f196ae4cb5d295db20",
+  "target": "https://cloud.projectdiscovery.io:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "cloud.projectdiscovery.io",
+  "started_at": "2026-10-25T09:39:53.622149+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-25T09:39:54.232820+00:00"
+}

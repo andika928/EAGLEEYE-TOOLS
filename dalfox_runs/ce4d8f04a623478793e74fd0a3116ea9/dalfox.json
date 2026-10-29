@@ -1,0 +1,23 @@
+{
+  "findings": [],
+  "meta": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 66487,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://boyolali.go.id/search?keyword=imgurl"
+      }
+    ],
+    "targets": [
+      "https://boyolali.go.id:443/search?keyword=imgurl"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 65
+  }
+}

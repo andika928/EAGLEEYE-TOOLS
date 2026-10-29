@@ -1,0 +1,12 @@
+{
+  "id": "cb9aac9693de4a3abab4ba34ace84c5a",
+  "target": "https://boyolali.go.id:443/search?keyword=imgurl",
+  "scope_host": "boyolali.go.id",
+  "started_at": "2026-10-18T12:56:36.566328+00:00",
+  "state": "failed",
+  "verdict": "INCONCLUSIVE",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "reason": "Dalfox v3 CLI required. Install/configure Dalfox v3 to enable native scanning.",
+  "finished_at": "2026-10-18T12:56:36.589130+00:00"
+}

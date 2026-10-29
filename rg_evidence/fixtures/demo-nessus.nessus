@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NessusClientData_v2>
+  <Report name="SIMULATED ReconGuard lab export — not a real Nessus scan">
+    <ReportHost name="127.0.0.1">
+      <ReportItem port="8080" protocol="tcp" svc_name="www" severity="0" pluginID="990001" pluginName="Deliberate lab marker" pluginFamily="General">
+        <plugin_output>SIMULATED: marker RECONGUARD_LAB_MARKER_V1 observed. No vulnerability demonstrated.</plugin_output>
+      </ReportItem>
+      <ReportItem port="8080" protocol="tcp" svc_name="www" severity="3" pluginID="990002" pluginName="SIMULATED version-only candidate" pluginFamily="General">
+        <description>Invented test record. No real CVE assignment.</description>
+        <plugin_output>SIMULATED: banner suggests an old component; patch backports and affected configuration have not been checked.</plugin_output>
+      </ReportItem>
+    </ReportHost>
+  </Report>
+</NessusClientData_v2>

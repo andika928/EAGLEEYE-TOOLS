@@ -1,0 +1,72 @@
+{
+  "id": "2988560b6de940959e22f0a508f11bdc",
+  "target": "https://manager.trial.lsk.lightspeed.app:443/",
+  "scope_host": "manager.trial.lsk.lightspeed.app",
+  "started_at": "2026-10-25T09:54:22.580437+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://manager.trial.lsk.lightspeed.app:443/",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://manager\\.trial\\.lsk\\.lightspeed\\.app(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\2988560b6de940959e22f0a508f11bdc\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 28,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\2988560b6de940959e22f0a508f11bdc\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 28127,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://manager.trial.lsk.lightspeed.app/"
+      }
+    ],
+    "targets": [
+      "https://manager.trial.lsk.lightspeed.app:443/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 28
+  },
+  "source_sha256": "8ba4d393a3ec544770f249fb263f18875934d32e6ce2c9c6ce4a6e2053f82339",
+  "review_required": true,
+  "evidence_sha256": "dfbb137275c6157da3e6363af674f0aec31445aa63aad4d481db049d43d3497c",
+  "finished_at": "2026-10-25T09:54:51.099052+00:00"
+}

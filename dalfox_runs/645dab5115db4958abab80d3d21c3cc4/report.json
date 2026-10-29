@@ -1,0 +1,86 @@
+{
+  "id": "645dab5115db4958abab80d3d21c3cc4",
+  "target": "https://nvio.ar:443/",
+  "scope_host": "nvio.ar",
+  "started_at": "2026-10-18T16:05:23.231970+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://nvio.ar:443/",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://nvio\\.ar(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\645dab5115db4958abab80d3d21c3cc4\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 27,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\645dab5115db4958abab80d3d21c3cc4\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 27443,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://nvio.ar/",
+        "waf": {
+          "detected": [
+            {
+              "confidence": 0.949999988079071,
+              "evidence": "Server: cloudflare",
+              "type": "Cloudflare"
+            },
+            {
+              "confidence": 0.699999988079071,
+              "evidence": "x-amz-cf-id header (CloudFront)",
+              "type": "AWS WAF"
+            }
+          ]
+        }
+      }
+    ],
+    "targets": [
+      "https://nvio.ar:443/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 28
+  },
+  "source_sha256": "f84af5905776f93fc0007b95a560326b75b86f54f1b2ea9a67c70ff2a5b21639",
+  "review_required": true,
+  "evidence_sha256": "8f86a10b23e85a4dd8f4559081fabc8254b290af4038a71e09a32c80092fc833",
+  "finished_at": "2026-10-18T16:05:50.918807+00:00"
+}

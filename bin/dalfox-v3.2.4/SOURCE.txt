@@ -1,0 +1,3 @@
+Dalfox v3.2.4 Windows x86_64 official release archive
+https://github.com/hahwul/dalfox/releases/download/v3.2.4/dalfox-v3.2.4-windows-x86_64.zip
+SHA256 28100d9355a1c767facd571a180d08b87d4de61167b3db99d56e4d8a6601d69a

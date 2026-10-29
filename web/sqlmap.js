@@ -1,0 +1,49 @@
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+  const slot = document.getElementById('sqlmapTool');
+  if (!slot) return;
+  const esc = x => String(x == null ? '' : x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let last = null, available = false, busy = false, timer;
+  slot.innerHTML = `<div class="sq-heading"><div><p class="sq-eyebrow">SEPARATE TOOL / SQL INJECTION</p><h2>SQLmap evidence desk</h2></div><span id="sqAvailability" role="status">Checking installation…</span></div><p>Enter one URL; query parameters and hostname are detected automatically. SQLmap selects its built-in payloads automatically, bounded here to Boolean/error-based GET checks, level 1, risk 1, one worker and a 1-second delay. A URL without parameters can discover same-origin query links and GET forms after you authorize a run. No database dumping or OS commands.</p><form id="sqForm"><div class="sq-fields"><label>Target URL<input id="sqTarget" class="tools-input" type="url" placeholder="https://example.com/item?id=1" required></label></div><p id="sqDetected" class="sq-detected">Enter a URL to preview its hostname, parameters, and bounded automatic payload plan. No requests are made by this preview.</p><details class="sq-guide"><summary>Automatic payload and PoC preview</summary><p id="sqPayloadPreview">The preview uses only the URL text. It will list detected parameter names, the automatic Boolean/error-based GET technique set, and the hostname boundary. Actual SQLmap payload evidence and a reproduce summary appear after an authorized run.</p></details><label class="sq-auth"><input id="sqAuthorized" type="checkbox" required> I am authorized to run active SQL injection tests on this endpoint.</label><div class="sq-actions"><button id="sqRun" class="tools-run-btn" disabled>Run SQLmap</button><button id="sqRefresh" type="button" class="site-gate-btn">Refresh results</button></div></form><p class="sq-note">False-positive controls: stable response baseline, fresh scan session, exact parameter matching and final-summary parsing. Scanner-reported results still require independent validation; zero false positives cannot be guaranteed.</p><div id="sqResult" aria-live="polite"></div><details class="sq-guide" open><summary>SQL injection mitigation tutorial</summary><ol><li><strong>Locate the query.</strong> Trace the affected endpoint and parameter into the database call. Review query construction and authorization checks.</li><li><strong>Bind values.</strong> Replace SQL string concatenation with prepared statements. Example for Python sqlite3:<pre>row = connection.execute(
+    "SELECT name FROM products WHERE id = ?",
+    (product_id,)
+).fetchone()</pre>Use the placeholder syntax of your database driver. Never interpolate the parameter into SQL.</li><li><strong>Allowlist identifiers.</strong> Map requested column names and sort directions to a fixed set of server-side values; bound parameters represent values, not SQL identifiers.</li><li><strong>Limit database privileges.</strong> Use an application-specific account with only the permissions it needs. Keep database errors out of public responses and log them privately.</li><li><strong>Verify in staging.</strong> Test ordinary inputs and previously reported payloads. Confirm query values stay bound and unauthorized rows remain inaccessible. Retest this exact endpoint with a fresh SQLmap session and compare evidence.</li><li><strong>Deploy and monitor.</strong> Back up the change, run regression tests and document the owner and validation date. A WAF is an additional control, not a replacement for parameterized queries.</li></ol><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP SQL injection prevention</a> · <a href="https://github.com/sqlmapproject/sqlmap/wiki/Usage" target="_blank" rel="noopener noreferrer">SQLmap documentation</a></details>`;
+  const el = id => document.getElementById(id);
+  function buttons() { el('sqRun').disabled = !available || busy; el('sqRun').textContent = busy ? 'SQLmap running…' : 'Run SQLmap'; }
+  async function request(path, options) { const r = await fetch(path, options); const d = await r.json(); if (!r.ok) throw Error(d.error || `HTTP ${r.status}`); return d; }
+  function render(r) {
+    last = r;
+    busy = ['baseline','discovering','running'].includes(r.state);
+    buttons();
+    if (r.state === 'not_run') { el('sqResult').innerHTML = '<p class="sq-empty">No SQLmap scan has been run. Evidence and reproduction details will appear here after a run.</p>'; return; }
+    const ps = (r.command_argv || []).map(a => "'" + a.replace(/'/g,"''") + "'").join(' ');
+    const discovered = (r.discovered_endpoints || []).length ? `<details open><summary>Discovered same-origin GET endpoints (${r.discovered_endpoints.length})</summary><ul>${r.discovered_endpoints.map(x => `<li><code>${esc(x)}</code></li>`).join('')}</ul>${(r.discovery_notes || []).map(x => `<p>${esc(x)}</p>`).join('')}</details>` : '';
+    el('sqResult').innerHTML = `<article class="sq-report"><p class="sq-eyebrow">${esc(r.verdict || 'PENDING')} · ${esc(r.state)}</p><h3>${esc(r.target)}</h3><p>Detected parameters: <strong>${esc((r.parameters || (r.parameter ? r.parameter.split(',') : [])).join(', ') || 'Discovery pending')}</strong> · Started: ${esc(r.started_at)} · Finished: ${esc(r.finished_at || 'Pending')}</p><p>${esc(r.reason || 'Collecting evidence. No vulnerability has been independently confirmed.')}</p>${discovered}<p>Confirmed vulnerabilities: ${esc(r.confirmed_vulnerabilities || 0)} · Scanner observations: ${(r.observations || []).length}</p>${(r.observations || []).map(o => `<section class="sq-observation"><h4>${esc(o.title)}</h4><p>${esc(o.parameter)} (${esc(o.place)}) · ${esc(o.type)} · SCANNER REPORTED</p><pre>${esc(o.payload)}</pre><p>Payload recorded by SQLmap. Validate the parameter, baseline/control behavior and query impact before reporting a vulnerability.</p></section>`).join('')}<details><summary>Evidence preview / baseline</summary><pre>${esc(JSON.stringify(r.baseline || [], null, 2))}</pre></details><details><summary>PoC / reproduce this check</summary><p>This repeats active detection. Use only on the same authorized endpoint. It is not an independently verified exploit.</p><pre>${esc(ps ? JSON.stringify(r.command_argv) : 'No SQLmap command was executed.')}</pre><p>Compare repeated control and test responses; account for WAF challenges, caching, authentication and dynamic content. Confirm the application query handles the supplied parameter before assigning severity.</p></details><details><summary>SQLmap source log</summary><p>SHA-256: ${esc(r.evidence_sha256 || 'Not collected')}${r.log_truncated ? ' · TRUNCATED' : ''}</p><pre>${esc(r.log || 'No SQLmap source log collected.')}</pre></details>${r.save_error ? `<p>${esc(r.save_error)}</p>` : ''}<button id="sqExport" type="button" class="site-gate-btn">Download SQLmap report</button></article>`;
+    el('sqExport').onclick = () => { const href = URL.createObjectURL(new Blob([JSON.stringify(last,null,2)],{type:'application/json'})); const a = document.createElement('a'); a.href=href; a.download='sqlmap-evidence.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(href),1000); };
+  }
+  async function refresh() {
+    clearTimeout(timer);
+    try { const status = await request('/api/sqlmap/status'); available = status.available; busy = status.running; el('sqAvailability').textContent = available ? 'SQLmap installed' : 'SQLmap unavailable — configure RECONGUARD_SQLMAP'; render(await request('/api/sqlmap/results')); }
+    catch(e) { el('sqAvailability').textContent = e.message; buttons(); }
+    if (busy) timer = setTimeout(refresh, 2000);
+  }
+  el('sqForm').onsubmit = async e => {
+    e.preventDefault(); if (busy) return;
+    busy = true; buttons();
+    try { render(await request('/api/sqlmap/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target:el('sqTarget').value,authorized:el('sqAuthorized').checked})})); timer=setTimeout(refresh,1000); }
+    catch(error) { busy=false; buttons(); el('sqResult').textContent=error.message; }
+  };
+  el('sqTarget').addEventListener('input', () => {
+    try {
+      const u = new URL(el('sqTarget').value);
+      if (!['http:', 'https:'].includes(u.protocol) || u.username || u.password) throw Error('Invalid URL');
+      const names = [...new Set(u.searchParams.keys())];
+      el('sqDetected').textContent = 'Preview only · target host: ' + u.hostname + ' · ' + (names.length ? 'Detected URL parameters: ' + names.join(', ') : 'No query parameters in this URL. On an authorized run, the tool may inspect this page and up to five same-origin GET endpoints for query inputs. POST forms and off-origin links are skipped. No requests are made by this preview.');
+      el('sqPayloadPreview').textContent = names.length
+        ? 'SQLmap will choose its built-in Boolean/error-based GET probes automatically for: ' + names.join(', ') + '. Scope is limited to ' + u.hostname + '; level 1, risk 1, one worker and a 1-second delay. This preview sends no payloads. The exact scanner-reported payload and reproduction command are shown only in the report after an authorized run.'
+        : 'No parameter is known from the URL alone. After authorization, the tool may make a bounded same-origin page discovery request, then test the first eligible GET endpoint it finds with SQLmap’s built-in Boolean/error-based probes. This preview sends no requests; POST forms, off-origin links, database dumps and OS commands are out of scope.';
+    } catch (_) { el('sqDetected').textContent = 'Enter a valid HTTP(S) URL to preview its parameters.'; }
+  });
+  el('sqRefresh').onclick = refresh;
+  refresh();
+});

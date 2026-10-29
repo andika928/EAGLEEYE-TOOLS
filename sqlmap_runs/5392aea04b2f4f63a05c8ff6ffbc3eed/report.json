@@ -1,0 +1,18 @@
+{
+  "id": "5392aea04b2f4f63a05c8ff6ffbc3eed",
+  "target": "https://manager.trial.lsk.lightspeed.app:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "manager.trial.lsk.lightspeed.app",
+  "started_at": "2026-10-25T09:54:14.951330+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "Discovery returned HTTP 403; no endpoints selected."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-25T09:54:16.298648+00:00"
+}

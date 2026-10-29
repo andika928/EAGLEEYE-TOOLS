@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const review = require('./web/asset-review.js');
+assert.equal(review.safeUrl('javascript:alert(1)'), null);
+assert.equal(review.safeUrl('https://user:secret@example.test'), null);
+assert.match(review.command("https://example.test/a'b"), /a''b/);
+assert.ok(!review.command('https://example.test').includes('--location'));
+const model = review.review({host:'example.test',ssl:true}, {findings:[{affected_component:'example.test',title:'ours'},{affected_component:'other.test',title:'other'}]});
+assert.equal(model.findings.length,1);
+assert.match(model.captured,/Not recorded/);
+const html = review.findingHtml({title:'<img src=x onerror=alert(1)>',description:'<script>bad</script>'});
+assert.ok(!html.includes('<img'));
+assert.ok(!html.includes('<script>'));
+assert.match(review.findingHtml({title:'Missing Permissions-Policy header'}),/Browser permission prompts/);
+console.log('Asset review checks passed: URL safety, command quoting, asset filtering, legacy data, HTML escaping, mitigation.');

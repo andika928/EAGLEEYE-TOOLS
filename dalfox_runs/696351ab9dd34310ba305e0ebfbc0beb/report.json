@@ -1,0 +1,72 @@
+{
+  "id": "696351ab9dd34310ba305e0ebfbc0beb",
+  "target": "https://cloud.tniad.mil.id:443/",
+  "scope_host": "cloud.tniad.mil.id",
+  "started_at": "2026-10-26T05:06:22.652493+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://cloud.tniad.mil.id:443/",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://cloud\\.tniad\\.mil\\.id(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\696351ab9dd34310ba305e0ebfbc0beb\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 32,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\696351ab9dd34310ba305e0ebfbc0beb\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 30559,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://cloud.tniad.mil.id/"
+      }
+    ],
+    "targets": [
+      "https://cloud.tniad.mil.id:443/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 28
+  },
+  "source_sha256": "c0dfb8684251a528e33c673debf7abfcd1c9d2dc4a22cbdd03a677eabe20a013",
+  "review_required": true,
+  "evidence_sha256": "fb62ae854de14738b376653c38b5aea48d642cb128a2ccdef40a35dd8c8e962b",
+  "finished_at": "2026-10-26T05:07:03.503516+00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "meta": {"dalfox_version": "SIMULATED", "incomplete": true, "target_summary": [{"target": "http://127.0.0.1:8080/search?q=test", "status": "incomplete", "error_code": "SIMULATED"}]},
+  "results": [
+    {"type": "R", "data": "http://127.0.0.1:8080/search?q=marker", "param": "q", "method": "GET", "inject_type": "inHTML", "severity": "Medium", "cwe": "CWE-79", "message_str": "SIMULATED reflection only; no execution demonstrated", "evidence": "SIMULATED: marker echoed as escaped text"},
+    {"type": "V", "data": "http://127.0.0.1:8080/lab?q=marker", "param": "q", "method": "GET", "inject_type": "inHTML", "severity": "High", "cwe": "CWE-79", "message_str": "SIMULATED Dalfox verification claim — independent validation pending", "evidence": "SIMULATED scanner claim; not a real execution trace"},
+    {"type": "R", "data": "https://outside.invalid/search?q=marker", "param": "q", "severity": "Medium", "cwe": "CWE-79", "message_str": "SIMULATED out-of-scope reflection"}
+  ]
+}

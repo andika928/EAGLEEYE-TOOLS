@@ -1,0 +1,23 @@
+{
+  "findings": [],
+  "meta": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": true,
+    "scan_duration_ms": 91962,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "incomplete",
+        "target": "https://www.vinted.com/personal_data_export/download?hash=04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054"
+      }
+    ],
+    "targets": [
+      "https://www.vinted.com:443/personal_data_export/download?hash=04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 87
+  }
+}

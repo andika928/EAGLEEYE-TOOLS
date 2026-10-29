@@ -1,0 +1,85 @@
+{
+  "id": "d72fb0a24ace48069ce9dd585a6722e3",
+  "target": "https://admin.bounty.cryptobox.com:443/login/?next=/",
+  "parameter": "next",
+  "parameters": [
+    "next"
+  ],
+  "scope_host": "admin.bounty.cryptobox.com",
+  "started_at": "2026-10-18T13:09:53.035174+00:00",
+  "state": "completed",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "baseline": [
+    {
+      "url": "https://admin.bounty.cryptobox.com:443/login/?next=/",
+      "checked_at": "2026-10-18T13:09:53.035454+00:00",
+      "state": "responded",
+      "observations": [],
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "Content-Security-Policy": "connect-src 'self'; script-src 'self'; upgrade-insecure-requests; style-src 'self' 'unsafe-inline'; img-src 'self' data:; default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'self'; frame-ancestors 'self'; font-src 'self'",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 10252,
+      "body_truncated": false,
+      "body_sample_sha256": "0b349373f58f053b14a8402e911695220c569979d3638d864e3de07493fe1abc",
+      "elapsed_ms": 1597
+    },
+    {
+      "url": "https://admin.bounty.cryptobox.com:443/login/?next=/",
+      "checked_at": "2026-10-18T13:09:54.632427+00:00",
+      "state": "responded",
+      "observations": [],
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "Content-Security-Policy": "connect-src 'self'; script-src 'self'; upgrade-insecure-requests; style-src 'self' 'unsafe-inline'; img-src 'self' data:; default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'self'; frame-ancestors 'self'; font-src 'self'",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 10252,
+      "body_truncated": false,
+      "body_sample_sha256": "0b349373f58f053b14a8402e911695220c569979d3638d864e3de07493fe1abc",
+      "elapsed_ms": 1282
+    }
+  ],
+  "baseline_stable": true,
+  "command_argv": [
+    "C:\\Users\\ASUS\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "C:\\New folder (6)\\bin\\sqlmap\\sqlmap.py",
+    "--url=https://admin.bounty.cryptobox.com:443/login/?next=/",
+    "-p",
+    "next",
+    "--batch",
+    "--non-interactive",
+    "--level=1",
+    "--risk=1",
+    "--technique=BE",
+    "--threads=1",
+    "--delay=1",
+    "--timeout=8",
+    "--retries=0",
+    "--ignore-redirects",
+    "--drop-set-cookie",
+    "--ignore-proxy",
+    "--disable-coloring",
+    "--fresh-queries",
+    "--flush-session",
+    "--answers=follow=N,extend=N",
+    "--abort-code=401,403,429,503",
+    "--output-dir=C:\\New folder (6)\\sqlmap_runs\\d72fb0a24ace48069ce9dd585a6722e3"
+  ],
+  "elapsed_seconds": 61,
+  "log": "        ___\r\n       __H__\r\n ___ ___[,]_____ ___ ___  {1.10.10.4#dev}\r\n|_ -| . [(]     | .'| . |\r\n|___|_  [)]_|_|_|__,|  _|\r\n      |_|V...       |_|   https://sqlmap.org\r\n\r\n[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program\r\n\r\n[*] starting @ 21:09:57 /2026-10-18/\r\n\r\n\r[21:09:57] [WARNING] using 'C:\\New folder (6)\\sqlmap_runs\\d72fb0a24ace48069ce9dd585a6722e3' as the output directory\r\n\r[21:09:57] [INFO] testing connection to the target URL\r\n\r[21:10:00] [INFO] checking if the target is protected by some kind of WAF/IPS\r\n\r[21:10:01] [INFO] testing if the target URL content is stable\r\n\r[21:10:03] [INFO] target URL content is stable\r\n\r[21:10:04] [WARNING] heuristic (basic) test shows that GET parameter 'next' might not be SQL injectable\r\n\r[21:10:06] [INFO] testing for SQL injection on GET parameter 'next'\r\n\r[21:10:06] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'\r\n\r[21:10:14] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'\r\n\r[21:10:16] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'\r\n\r[21:10:25] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'\r\n\r[21:10:32] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'\r\n\r[21:10:40] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'\r\n\r[21:10:48] [INFO] testing 'H2 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (CAST)'\r\n\r[21:10:57] [WARNING] GET parameter 'next' does not seem to be injectable\r\n\r[21:10:57] [CRITICAL] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. Rerun without providing the option '--technique'. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment') and/or switch '--random-agent'\r\n\r\n[*] ending @ 21:10:57 /2026-10-18/\r\n\r\n",
+  "review_required": true,
+  "warnings_present": true,
+  "reason": "SQLmap output requires independent reproduction and impact review. No detection is not proof of security.",
+  "exit_code": 0,
+  "evidence_sha256": "9b9dc3d19febfef3b5aaec7fa56d0feed3c1ca8fa8e7048b2a0993285cb5123f",
+  "log_truncated": false,
+  "finished_at": "2026-10-18T13:10:57.610602+00:00"
+}

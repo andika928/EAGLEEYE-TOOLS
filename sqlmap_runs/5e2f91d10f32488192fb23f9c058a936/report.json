@@ -1,0 +1,16 @@
+{
+  "id": "5e2f91d10f32488192fb23f9c058a936",
+  "target": "https://jdih.boyolali.go.id:443/auth/signin",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "jdih.boyolali.go.id",
+  "started_at": "2026-10-18T14:54:02.732956+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-18T14:54:03.366205+00:00"
+}

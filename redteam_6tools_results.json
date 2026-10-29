@@ -1,0 +1,960 @@
+{
+  "target": "https://juice-shop.herokuapp.com/#/",
+  "host": "juice-shop.herokuapp.com",
+  "base_url": "https://juice-shop.herokuapp.com",
+  "tools_ran": [
+    "portscanner",
+    "subenum",
+    "dirbust",
+    "secscan",
+    "sqli_scanner",
+    "xss_scanner",
+    "csrf_scanner",
+    "ssrf_scanner",
+    "idor_scanner",
+    "misconfig_scanner",
+    "auth_scanner",
+    "dapp_scanner",
+    "injection_audit",
+    "privilege_audit",
+    "sensitive_data_audit"
+  ],
+  "results": {
+    "portscanner": {
+      "tool": "portscanner",
+      "target": "juice-shop.herokuapp.com",
+      "resolved_ip": "75.2.17.243",
+      "ports_scanned": 27,
+      "open_ports": [
+        {
+          "port": 21,
+          "service": "ftp",
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "service": "ssh",
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "service": "telnet",
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "service": "smtp",
+          "banner": ""
+        },
+        {
+          "port": 53,
+          "service": "domain",
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "service": "http",
+          "banner": ""
+        },
+        {
+          "port": 110,
+          "service": "pop3",
+          "banner": ""
+        },
+        {
+          "port": 135,
+          "service": "epmap",
+          "banner": ""
+        },
+        {
+          "port": 139,
+          "service": "netbios-ssn",
+          "banner": ""
+        },
+        {
+          "port": 143,
+          "service": "imap",
+          "banner": ""
+        },
+        {
+          "port": 443,
+          "service": "https",
+          "banner": ""
+        },
+        {
+          "port": 445,
+          "service": "microsoft-ds",
+          "banner": ""
+        },
+        {
+          "port": 993,
+          "service": "imaps",
+          "banner": ""
+        },
+        {
+          "port": 995,
+          "service": "pop3s",
+          "banner": ""
+        },
+        {
+          "port": 1723,
+          "service": "pptp",
+          "banner": ""
+        },
+        {
+          "port": 3306,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 3389,
+          "service": "ms-wbt-server",
+          "banner": ""
+        },
+        {
+          "port": 5432,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 5900,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 6379,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 8000,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 8080,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 8443,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 8888,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 9090,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 9200,
+          "service": "",
+          "banner": ""
+        },
+        {
+          "port": 27017,
+          "service": "",
+          "banner": ""
+        }
+      ],
+      "pocs": [
+        {
+          "title": "Open port 21/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 21",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 22/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 22",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 23/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 23",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 25/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 25",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 53/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 53",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 80/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 80",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 110/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 110",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 135/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 135",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 139/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 139",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 143/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 143",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 443/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 443",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 445/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 445",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 993/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 993",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 995/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 995",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 1723/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 1723",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 3306/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 3306",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 3389/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 3389",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 5432/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 5432",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 5900/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 5900",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 6379/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 6379",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 8000/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 8000",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 8080/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 8080",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 8443/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 8443",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 8888/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 8888",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 9090/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 9090",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 9200/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 9200",
+          "evidence": "TCP connect succeeds"
+        },
+        {
+          "title": "Open port 27017/tcp",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "nc -vz juice-shop.herokuapp.com 27017",
+          "evidence": "TCP connect succeeds"
+        }
+      ]
+    },
+    "subenum": {
+      "tool": "subenum",
+      "target": "juice-shop.herokuapp.com",
+      "wildcard_ips": [],
+      "tested": 104,
+      "subdomains": [],
+      "pocs": []
+    },
+    "dirbust": {
+      "tool": "dirbust",
+      "target": "https://juice-shop.herokuapp.com/",
+      "site_gate": null,
+      "soft404_baseline": {
+        "status": 200,
+        "length": 9984
+      },
+      "tested": 145,
+      "paths": [
+        {
+          "path": "/metrics",
+          "status": 200,
+          "length": 26274
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "length": 28
+        },
+        {
+          "path": "/api",
+          "status": 500,
+          "length": 2296
+        },
+        {
+          "path": "/api.php",
+          "status": 500,
+          "length": 2304
+        },
+        {
+          "path": "/api/v1",
+          "status": 500,
+          "length": 2302
+        },
+        {
+          "path": "/api/v2",
+          "status": 500,
+          "length": 2302
+        },
+        {
+          "path": "/profile",
+          "status": 500,
+          "length": 1038
+        }
+      ],
+      "pocs": [
+        {
+          "title": "200 /metrics",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/metrics\"",
+          "evidence": "HTTP 200, length 26274"
+        },
+        {
+          "title": "200 /robots.txt",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/robots.txt\"",
+          "evidence": "HTTP 200, length 28"
+        },
+        {
+          "title": "500 /api",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/api\"",
+          "evidence": "HTTP 500, length 2296"
+        },
+        {
+          "title": "500 /api.php",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/api.php\"",
+          "evidence": "HTTP 500, length 2304"
+        },
+        {
+          "title": "500 /api/v1",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/api/v1\"",
+          "evidence": "HTTP 500, length 2302"
+        },
+        {
+          "title": "500 /api/v2",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/api/v2\"",
+          "evidence": "HTTP 500, length 2302"
+        },
+        {
+          "title": "500 /profile",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/profile\"",
+          "evidence": "HTTP 500, length 1038"
+        }
+      ]
+    },
+    "secscan": {
+      "tool": "secscan",
+      "target": "https://juice-shop.herokuapp.com",
+      "final_url": "https://juice-shop.herokuapp.com",
+      "redirected": false,
+      "upgraded_to_https": false,
+      "status": 200,
+      "response_headers": {
+        "Content-Type": "text/html; charset=UTF-8",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "missing_headers": [
+        {
+          "header": "Content-Security-Policy",
+          "why": "mitigates XSS and data injection"
+        },
+        {
+          "header": "Strict-Transport-Security",
+          "why": "forces HTTPS (HSTS)"
+        },
+        {
+          "header": "Referrer-Policy",
+          "why": "controls referrer information leakage"
+        },
+        {
+          "header": "Permissions-Policy",
+          "why": "restricts browser features"
+        }
+      ],
+      "disclosed_headers": [
+        {
+          "header": "Server",
+          "value": "Heroku"
+        }
+      ],
+      "cookies": [],
+      "transport": "https",
+      "tls": {
+        "subject": [
+          [
+            [
+              "commonName",
+              "*.herokuapp.com"
+            ]
+          ]
+        ],
+        "issuer": [
+          [
+            [
+              "countryName",
+              "US"
+            ]
+          ],
+          [
+            [
+              "organizationName",
+              "Amazon"
+            ]
+          ],
+          [
+            [
+              "commonName",
+              "Amazon RSA 2048 M04"
+            ]
+          ]
+        ],
+        "notAfter": "May 11 23:59:59 2027 GMT"
+      },
+      "site_gate": null,
+      "findings_count": 5,
+      "pocs": [
+        {
+          "title": "Missing Content-Security-Policy",
+          "confidence": "confirmed",
+          "severity": "low",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com\" -I | grep -i \"Content-Security-Policy\"",
+          "evidence": "empty output = header absent"
+        },
+        {
+          "title": "Missing Strict-Transport-Security",
+          "confidence": "confirmed",
+          "severity": "low",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com\" -I | grep -i \"Strict-Transport-Security\"",
+          "evidence": "empty output = header absent"
+        },
+        {
+          "title": "Missing Referrer-Policy",
+          "confidence": "confirmed",
+          "severity": "low",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com\" -I | grep -i \"Referrer-Policy\"",
+          "evidence": "empty output = header absent"
+        },
+        {
+          "title": "Missing Permissions-Policy",
+          "confidence": "confirmed",
+          "severity": "low",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com\" -I | grep -i \"Permissions-Policy\"",
+          "evidence": "empty output = header absent"
+        },
+        {
+          "title": "Discloses Server",
+          "confidence": "confirmed",
+          "severity": "info",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com\" -I | grep -i \"Server\"",
+          "evidence": "Heroku"
+        }
+      ]
+    },
+    "sqli_scanner": {
+      "tool": "sqli_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "params": [],
+      "findings": [],
+      "pocs": []
+    },
+    "xss_scanner": {
+      "tool": "xss_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "marker": "XzPhCw7dQazX",
+      "params": [],
+      "findings": [],
+      "pocs": []
+    },
+    "csrf_scanner": {
+      "tool": "csrf_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "status": 200,
+      "forms_found": 0,
+      "post_forms": 0,
+      "meta_csrf": false,
+      "findings": [],
+      "cookies": [],
+      "pocs": []
+    },
+    "ssrf_scanner": {
+      "tool": "ssrf_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "error": "no query parameters to test",
+      "callback": null,
+      "candidates": [],
+      "findings": [],
+      "pocs": []
+    },
+    "idor_scanner": {
+      "tool": "idor_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "error": "no numeric query parameter found (pass e.g. ?id=1)",
+      "param": null,
+      "base_id": null,
+      "tested_ids": [],
+      "findings": [],
+      "pocs": []
+    },
+    "misconfig_scanner": {
+      "tool": "misconfig_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "status": 200,
+      "final_url": "https://juice-shop.herokuapp.com/#/",
+      "checks": {
+        "cors_allow_origin": "*",
+        "cors_allow_credentials": null,
+        "allow_header": null,
+        "exposed_files": [],
+        "directory_listing": []
+      },
+      "findings": [
+        {
+          "type": "CORS wildcard origin",
+          "severity": "LOW",
+          "detail": "Access-Control-Allow-Origin: *"
+        }
+      ],
+      "pocs": [
+        {
+          "title": "CORS wildcard origin",
+          "confidence": "confirmed",
+          "severity": "LOW",
+          "poc": "curl -sS -i -X GET \"https://juice-shop.herokuapp.com/#/\"",
+          "evidence": "Access-Control-Allow-Origin: *"
+        }
+      ]
+    },
+    "auth_scanner": {
+      "tool": "auth_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "status": 200,
+      "final_url": "https://juice-shop.herokuapp.com/#/",
+      "cookies": [],
+      "jwt": [],
+      "password_form": false,
+      "findings": [],
+      "pocs": []
+    },
+    "dapp_scanner": {
+      "tool": "dapp_scanner",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "status": 200,
+      "is_dapp": true,
+      "web3_markers": [
+        "ethers",
+        "web3"
+      ],
+      "scripts_scanned": [
+        "(page)",
+        "polyfills.js",
+        "scripts.js",
+        "main.js"
+      ],
+      "rpc_endpoints": [],
+      "findings": [],
+      "pocs": []
+    },
+    "injection_audit": {
+      "tool": "injection_audit",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "assessment_class": "Injection Attacks",
+      "safety_profile": "bounded differential GET probes; no data modification",
+      "validation_state": "review_required",
+      "observations": [],
+      "coverage": [
+        {
+          "control": "SQL error differential",
+          "status": "not_tested"
+        },
+        {
+          "control": "SQL boolean differential",
+          "status": "not_tested"
+        },
+        {
+          "control": "SQL timing differential",
+          "status": "not_tested"
+        },
+        {
+          "control": "Reflected input context",
+          "status": "not_tested"
+        },
+        {
+          "control": "Stored injection and second-order flows",
+          "status": "not_tested"
+        },
+        {
+          "control": "OS/LDAP/template injection",
+          "status": "not_tested"
+        }
+      ],
+      "limitations": [
+        "No state-changing requests are sent.",
+        "No finding is considered exploitable without manual confirmation.",
+        "Authenticated and stored-input workflows require a dedicated test account and test plan."
+      ],
+      "raw_modules": {
+        "sql": {
+          "tool": "sqli_scanner",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "params": [],
+          "findings": []
+        },
+        "xss": {
+          "tool": "xss_scanner",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "marker": "XzHisMhISNzX",
+          "params": [],
+          "findings": []
+        }
+      },
+      "pocs": []
+    },
+    "privilege_audit": {
+      "tool": "privilege_audit",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "assessment_class": "Privilege Escalation",
+      "safety_profile": "read-only adjacent-object comparison and passive session inspection",
+      "validation_state": "two_role_validation_required",
+      "observations": [],
+      "coverage": [
+        {
+          "control": "Adjacent object-reference behavior",
+          "status": "not_tested"
+        },
+        {
+          "control": "Cookie and token posture",
+          "status": "tested"
+        },
+        {
+          "control": "Horizontal authorization with two users",
+          "status": "not_tested"
+        },
+        {
+          "control": "Vertical authorization with user/admin roles",
+          "status": "not_tested"
+        },
+        {
+          "control": "Function-level authorization and workflow bypass",
+          "status": "not_tested"
+        }
+      ],
+      "limitations": [
+        "Distinct adjacent responses are not proof of unauthorized access.",
+        "Confirmed privilege escalation requires controlled low-privilege and high-privilege accounts.",
+        "No credentials, role changes, or write operations are attempted."
+      ],
+      "raw_modules": {
+        "auth": {
+          "tool": "auth_scanner",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "status": 200,
+          "final_url": "https://juice-shop.herokuapp.com/#/",
+          "cookies": [],
+          "jwt": [],
+          "password_form": false,
+          "findings": []
+        },
+        "idor": {
+          "tool": "idor_scanner",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "error": "no numeric query parameter found (pass e.g. ?id=1)",
+          "param": null,
+          "base_id": null,
+          "tested_ids": [],
+          "findings": []
+        }
+      },
+      "pocs": []
+    },
+    "sensitive_data_audit": {
+      "tool": "sensitive_data_audit",
+      "target": "https://juice-shop.herokuapp.com/#/",
+      "assessment_class": "Sensitive Data Exposure",
+      "safety_profile": "bounded public GET/OPTIONS requests with soft-404 and interception filtering",
+      "validation_state": "review_required",
+      "observations": [
+        {
+          "category": "Sensitive data exposure",
+          "title": "CORS wildcard origin",
+          "severity": "LOW",
+          "confidence": "evidence_filtered",
+          "evidence": "Access-Control-Allow-Origin: *",
+          "validation": "Review the sanitized evidence and confirm that exposed content is sensitive and in scope."
+        },
+        {
+          "category": "Technology disclosure",
+          "title": "Server is disclosed",
+          "severity": "INFO",
+          "confidence": "observed",
+          "evidence": "Heroku",
+          "validation": "Determine whether the disclosed version materially increases exploitability."
+        }
+      ],
+      "coverage": [
+        {
+          "control": "Known sensitive-file exposure",
+          "status": "tested"
+        },
+        {
+          "control": "Directory listing",
+          "status": "tested"
+        },
+        {
+          "control": "Verbose error disclosure",
+          "status": "tested"
+        },
+        {
+          "control": "Response-header disclosure",
+          "status": "tested"
+        },
+        {
+          "control": "Authenticated records and tenant isolation",
+          "status": "not_tested"
+        },
+        {
+          "control": "Logs, backups outside web root, and database contents",
+          "status": "not_tested"
+        }
+      ],
+      "limitations": [
+        "Response bodies and secret values are not returned in the normalized observation list.",
+        "Site-gate, captive-portal, and soft-404 responses are suppressed.",
+        "No absence-of-exposure conclusion is made for untested authenticated or internal systems."
+      ],
+      "site_gate": null,
+      "raw_modules": {
+        "misconfig": {
+          "tool": "misconfig_scanner",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "status": 200,
+          "final_url": "https://juice-shop.herokuapp.com/#/",
+          "checks": {
+            "cors_allow_origin": "*",
+            "cors_allow_credentials": null,
+            "allow_header": null,
+            "exposed_files": [],
+            "directory_listing": []
+          },
+          "findings": [
+            {
+              "type": "CORS wildcard origin",
+              "severity": "LOW",
+              "detail": "Access-Control-Allow-Origin: *"
+            }
+          ]
+        },
+        "security_config": {
+          "tool": "secscan",
+          "target": "https://juice-shop.herokuapp.com/#/",
+          "final_url": "https://juice-shop.herokuapp.com/#/",
+          "redirected": false,
+          "upgraded_to_https": false,
+          "status": 200,
+          "response_headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "SAMEORIGIN"
+          },
+          "missing_headers": [
+            {
+              "header": "Content-Security-Policy",
+              "why": "mitigates XSS and data injection"
+            },
+            {
+              "header": "Strict-Transport-Security",
+              "why": "forces HTTPS (HSTS)"
+            },
+            {
+              "header": "Referrer-Policy",
+              "why": "controls referrer information leakage"
+            },
+            {
+              "header": "Permissions-Policy",
+              "why": "restricts browser features"
+            }
+          ],
+          "disclosed_headers": [
+            {
+              "header": "Server",
+              "value": "Heroku"
+            }
+          ],
+          "cookies": [],
+          "transport": "https",
+          "tls": {
+            "subject": [
+              [
+                [
+                  "commonName",
+                  "*.herokuapp.com"
+                ]
+              ]
+            ],
+            "issuer": [
+              [
+                [
+                  "countryName",
+                  "US"
+                ]
+              ],
+              [
+                [
+                  "organizationName",
+                  "Amazon"
+                ]
+              ],
+              [
+                [
+                  "commonName",
+                  "Amazon RSA 2048 M04"
+                ]
+              ]
+            ],
+            "notAfter": "May 11 23:59:59 2027 GMT"
+          },
+          "site_gate": null,
+          "findings_count": 5
+        }
+      },
+      "pocs": [
+        {
+          "title": "CORS wildcard origin",
+          "confidence": "candidate",
+          "severity": "low",
+          "poc": "python misconfig_scanner.py \"https://juice-shop.herokuapp.com/#/\"",
+          "evidence": "Access-Control-Allow-Origin: *",
+          "validation": "Review the sanitized evidence and confirm that exposed content is sensitive and in scope.",
+          "evidence_only": true
+        },
+        {
+          "title": "Server is disclosed",
+          "confidence": "observed",
+          "severity": "info",
+          "poc": "python misconfig_scanner.py \"https://juice-shop.herokuapp.com/#/\"",
+          "evidence": "Heroku",
+          "validation": "Determine whether the disclosed version materially increases exploitability.",
+          "evidence_only": true
+        }
+      ]
+    }
+  }
+}

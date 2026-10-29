@@ -1,0 +1,72 @@
+{
+  "id": "dd5076a2ab3f47d7a7a9b1780c4b1b22",
+  "target": "https://bounty.cryptobox.com:443/",
+  "scope_host": "bounty.cryptobox.com",
+  "started_at": "2026-10-19T12:43:51.056300+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://bounty.cryptobox.com:443/",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://bounty\\.cryptobox\\.com(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\dd5076a2ab3f47d7a7a9b1780c4b1b22\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 28,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\dd5076a2ab3f47d7a7a9b1780c4b1b22\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 28309,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://bounty.cryptobox.com/"
+      }
+    ],
+    "targets": [
+      "https://bounty.cryptobox.com:443/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 28
+  },
+  "source_sha256": "1854c204e20ca268e2291fca7209e817c461b40f5eec37af4c5f8696b56771c8",
+  "review_required": true,
+  "evidence_sha256": "a302f7e81f7c33686bc5abebd5d1476a1dc61d4afaec010b980ecada979a47d2",
+  "finished_at": "2026-10-19T12:44:21.124984+00:00"
+}

@@ -1,0 +1,23 @@
+{
+  "findings": [],
+  "meta": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 35326,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://www.paypal.com/myaccount/summary?intl=0"
+      }
+    ],
+    "targets": [
+      "https://www.paypal.com:443/myaccount/summary?intl=0"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 36
+  }
+}

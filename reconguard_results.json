@@ -1,0 +1,72 @@
+{
+  "program_name": "ReconGuard-experiences.crypto.com",
+  "target_domain": "experiences.crypto.com",
+  "scan_date": "2026-10-26 05:55:56 UTC",
+  "scope": {
+    "in_scope_domains": [
+      "experiences.crypto.com"
+    ],
+    "out_of_scope_regex": [
+      ".*logout.*"
+    ],
+    "max_rate_limit": 15.0,
+    "researcher_header": "X-Bug-Bounty-Researcher: X-Bug-Bounty-Researcher: ReconGuard-Pentester"
+  },
+  "assets": [],
+  "baselines": {},
+  "findings": [],
+  "summary": {
+    "status": "COMPLETED_WITH_GAPS",
+    "target": "experiences.crypto.com",
+    "assets_discovered": 0,
+    "live_endpoints": 0,
+    "calibrated_baselines": 0,
+    "verified_anomalies": 0,
+    "observations": 0,
+    "confirmed_vulnerabilities": 0,
+    "severity_breakdown": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    },
+    "wildcards_filtered": 109
+  },
+  "telemetry_logs": [
+    "[13:55:53] INIT // ReconGuard ASM Pipeline started for target 'experiences.crypto.com'",
+    "[13:55:53] STAGE 1 // [Scope Guard] Validating scope permissions for 'experiences.crypto.com'...",
+    "[13:55:53] [+] [Scope Guard] Authorization verified: Matches in-scope domain 'experiences.crypto.com'",
+    "[13:55:53] STAGE 2 // [Subfinder Core] Discovering subdomains & resolving DNS with Wildcard filter...",
+    "[13:55:53] [*] [Subfinder] Fingerprinting Wildcard DNS for *.experiences.crypto.com...",
+    "[13:55:53] [!] [Subfinder] Wildcard DNS ACTIVE: 202.3.218.137 (Filtering enabled)",
+    "[13:55:53] [*] [Subfinder] Querying Certificate Transparency (crt.sh)...",
+    "[13:55:55] [+] [Subfinder] crt.sh discovered 10 passive candidates",
+    "[13:55:55] [*] [Subfinder] Resolving 110 candidate subdomains with 25 threads...",
+    "[13:55:56] [+] [Subfinder] Completed: 0 verified live assets (109 wildcards eliminated)",
+    "[13:55:56] [+] [Subfinder Core] 0 in-scope targets scheduled for HTTP validation",
+    "[13:55:56] STAGE 3 // [Httpx Core] Probing live web services & DOM hash clustering...",
+    "[13:55:56] [*] [Httpx] Probing web services across 0 host candidates...",
+    "[13:55:56] [+] [Httpx] Completed: 0 live HTTP(S) endpoints identified across 0 DOM clusters",
+    "[13:55:56] STAGE 4 // [Ffuf Core] Auto-Calibrating baselines & fuzzing high-value endpoints...",
+    "[13:55:56] STAGE 5 // [Dalfox] Starting automatic tool stage",
+    "[13:55:56] [!] [Dalfox] Unavailable; this stage was not tested",
+    "[13:55:56] STAGE 6 // [Nikto] Starting automatic tool stage",
+    "[13:55:56] [!] [Nikto] Unavailable; this stage was not tested",
+    "[13:55:56] STAGE 7 // [Evidence Engine] Compiling observations and source evidence",
+    "[13:55:56] SUMMARY // Pipeline complete: 0 observations across 0 live assets; check tool run states for coverage gaps"
+  ],
+  "tool_runs": [
+    {
+      "engine": "dalfox",
+      "state": "unavailable",
+      "message": "Executable not installed on server PATH"
+    },
+    {
+      "engine": "nikto",
+      "state": "unavailable",
+      "message": "Executable not installed on server PATH"
+    }
+  ],
+  "tool_sources": [],
+  "status": "COMPLETED_WITH_GAPS"
+}

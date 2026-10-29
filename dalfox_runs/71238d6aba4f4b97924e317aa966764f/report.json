@@ -1,0 +1,72 @@
+{
+  "id": "71238d6aba4f4b97924e317aa966764f",
+  "target": "http://paypal.com:80/",
+  "scope_host": "paypal.com",
+  "started_at": "2026-10-20T06:31:16.563013+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "http://paypal.com:80/",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^http://paypal\\.com(?::80)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\71238d6aba4f4b97924e317aa966764f\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 42,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\71238d6aba4f4b97924e317aa966764f\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 42636,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "http://paypal.com/"
+      }
+    ],
+    "targets": [
+      "http://paypal.com:80/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 42
+  },
+  "source_sha256": "1acd67fc4f687a94937a6cfb5316da02affc94c1efc28114fb0b851562ad6a64",
+  "review_required": true,
+  "evidence_sha256": "ebb5bb0bbe6829be2ba30611fb660022c6e1f87d32b170a6ab5a07a6e1fffca8",
+  "finished_at": "2026-10-20T06:32:00.277226+00:00"
+}

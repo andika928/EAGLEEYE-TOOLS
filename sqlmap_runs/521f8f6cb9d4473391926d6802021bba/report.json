@@ -1,0 +1,18 @@
+{
+  "id": "521f8f6cb9d4473391926d6802021bba",
+  "target": "https://rekrutmen.tni-au.mil.id:443/login_auth",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "rekrutmen.tni-au.mil.id",
+  "started_at": "2026-10-18T13:12:41.504838+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "Discovery returned HTTP 403; no endpoints selected."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-18T13:12:42.189107+00:00"
+}

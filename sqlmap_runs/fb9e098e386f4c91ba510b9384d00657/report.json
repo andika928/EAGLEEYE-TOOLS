@@ -1,0 +1,18 @@
+{
+  "id": "fb9e098e386f4c91ba510b9384d00657",
+  "target": "http://paypal.com:80/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "paypal.com",
+  "started_at": "2026-10-20T06:31:21.917240+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "Redirect left the authorized origin or had no destination; discovery stopped."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-20T06:31:22.160555+00:00"
+}

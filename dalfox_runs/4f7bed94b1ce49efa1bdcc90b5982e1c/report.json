@@ -1,0 +1,72 @@
+{
+  "id": "4f7bed94b1ce49efa1bdcc90b5982e1c",
+  "target": "https://jdih.boyolali.go.id:443/auth/signin",
+  "scope_host": "jdih.boyolali.go.id",
+  "started_at": "2026-10-18T14:58:15.611414+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://jdih.boyolali.go.id:443/auth/signin",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://jdih\\.boyolali\\.go\\.id(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\4f7bed94b1ce49efa1bdcc90b5982e1c\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 33,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\4f7bed94b1ce49efa1bdcc90b5982e1c\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 32841,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://jdih.boyolali.go.id/auth/signin"
+      }
+    ],
+    "targets": [
+      "https://jdih.boyolali.go.id:443/auth/signin"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 32
+  },
+  "source_sha256": "5fbd57fc9cd185744025518f20df5da1ec7e7240a3428227f77c2fd2ffc8a07a",
+  "review_required": true,
+  "evidence_sha256": "647c5f6114e72d511cfaacc9dcfef5696145b761e9b8a9a0fbfbc9ebf6f43885",
+  "finished_at": "2026-10-18T14:58:48.693792+00:00"
+}

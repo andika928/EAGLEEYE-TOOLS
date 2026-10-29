@@ -1,0 +1,23 @@
+{
+  "findings": [],
+  "meta": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 28309,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://bounty.cryptobox.com/"
+      }
+    ],
+    "targets": [
+      "https://bounty.cryptobox.com:443/"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 28
+  }
+}

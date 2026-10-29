@@ -1,0 +1,81 @@
+{
+  "id": "1503c80e73ab47eab923cb21c38ea15a",
+  "target": "https://www.vinted.com:443/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401",
+  "scope_host": "www.vinted.com",
+  "started_at": "2026-10-19T00:28:05.797291+00:00",
+  "state": "completed",
+  "verdict": "INCONCLUSIVE",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://www.vinted.com:443/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://www\\.vinted\\.com(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\1503c80e73ab47eab923cb21c38ea15a\\dalfox.json"
+  ],
+  "reason": "Dalfox marked the run incomplete. Treat every observation as a lead; no negative conclusion is supported.",
+  "elapsed_seconds": 112,
+  "log": "[scan] https://www.vinted.com/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401 exceeded --scan-timeout (60s); cancelling target (stops at next checkpoint)\nResults written to C:\\New folder (6)\\dalfox_runs\\1503c80e73ab47eab923cb21c38ea15a\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": true,
+    "scan_duration_ms": 112466,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "incomplete",
+        "target": "https://www.vinted.com/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401",
+        "waf": {
+          "detected": [
+            {
+              "confidence": 0.949999988079071,
+              "evidence": "Server: cloudflare",
+              "type": "Cloudflare"
+            }
+          ]
+        }
+      }
+    ],
+    "targets": [
+      "https://www.vinted.com:443/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 82
+  },
+  "source_sha256": "d6d6eb53786db5489097c6ccc4ddbddd6e2083a8d1683cbcf46a4c701a5a19b8",
+  "review_required": true,
+  "evidence_sha256": "5135d4eb03eda287353adf14f4176b71775bd7c5c36858819a68b29204c8809c",
+  "finished_at": "2026-10-19T00:29:58.455236+00:00"
+}

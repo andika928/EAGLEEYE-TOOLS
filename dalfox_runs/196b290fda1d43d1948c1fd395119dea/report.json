@@ -1,0 +1,72 @@
+{
+  "id": "196b290fda1d43d1948c1fd395119dea",
+  "target": "https://www.paypal.com:443/myaccount/summary?intl=0",
+  "scope_host": "www.paypal.com",
+  "started_at": "2026-10-20T07:06:19.430515+00:00",
+  "state": "completed",
+  "verdict": "NO_DETECTION",
+  "results": [],
+  "confirmed_vulnerabilities": 0,
+  "command_argv": [
+    "C:\\New folder (6)\\bin\\dalfox-v3.2.4\\dalfox.exe",
+    "scan",
+    "https://www.paypal.com:443/myaccount/summary?intl=0",
+    "--workers",
+    "1",
+    "--max-concurrent-targets",
+    "1",
+    "--max-targets-per-host",
+    "5",
+    "--rate-limit",
+    "1",
+    "--delay",
+    "200",
+    "--timeout",
+    "8",
+    "--retries",
+    "0",
+    "--scan-timeout",
+    "60",
+    "--max-payloads-per-param",
+    "10",
+    "--waf-bypass",
+    "off",
+    "--insecure=false",
+    "--include-url",
+    "^https://www\\.paypal\\.com(?::443)?(?:/|$)",
+    "--format",
+    "json",
+    "--include-all",
+    "--output",
+    "C:\\New folder (6)\\dalfox_runs\\196b290fda1d43d1948c1fd395119dea\\dalfox.json"
+  ],
+  "reason": "Dalfox completed without findings on its discovered and tested inputs. This does not prove the URL or application is free of XSS.",
+  "elapsed_seconds": 35,
+  "log": "Results written to C:\\New folder (6)\\dalfox_runs\\196b290fda1d43d1948c1fd395119dea\\dalfox.json\n",
+  "exit_code": 0,
+  "blocked": [],
+  "scan_metadata": {
+    "dalfox_version": "3.2.4",
+    "dedup_mode": "exact",
+    "failed_requests": 0,
+    "findings_count": 0,
+    "incomplete": false,
+    "scan_duration_ms": 35326,
+    "target_summary": [
+      {
+        "findings_count": 0,
+        "status": "clean",
+        "target": "https://www.paypal.com/myaccount/summary?intl=0"
+      }
+    ],
+    "targets": [
+      "https://www.paypal.com:443/myaccount/summary?intl=0"
+    ],
+    "targets_deduplicated": 0,
+    "total_requests": 36
+  },
+  "source_sha256": "99f56de05df8ec335af9435d007b051789754171cbf8db34e08f939675c3ec1d",
+  "review_required": true,
+  "evidence_sha256": "71a0be36c2be9ba2fd0a4c45ce6214c2dd0c3118a789b94eae573480095e8cf1",
+  "finished_at": "2026-10-20T07:06:55.117566+00:00"
+}

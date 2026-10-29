@@ -1,0 +1,16 @@
+{
+  "id": "380a1d619454475caa88810c4a424023",
+  "target": "https://cloud.mabesad.mil.id:443/index.php/login",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "cloud.mabesad.mil.id",
+  "started_at": "2026-10-26T05:34:06.681566+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-26T05:34:07.372380+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "0fae3d7d7b2646499969ac55750c06eb",
+  "target": "https://nvio.ar:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "nvio.ar",
+  "started_at": "2026-10-18T16:05:28.601330+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-18T16:05:28.927494+00:00"
+}

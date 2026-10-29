@@ -1,0 +1,7 @@
+=================================================================
+         [+] AEGIS // RED TEAM SECURITY DASHBOARD SERVER
+=================================================================
+[*] Dashboard UI available at: http://localhost:8080
+[*] API Endpoints: http://localhost:8080/api/report
+[*] Press Ctrl+C to terminate the server
+=================================================================

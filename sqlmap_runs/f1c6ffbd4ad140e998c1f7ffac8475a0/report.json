@@ -1,0 +1,16 @@
+{
+  "id": "f1c6ffbd4ad140e998c1f7ffac8475a0",
+  "target": "https://bounty.cryptobox.com:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "bounty.cryptobox.com",
+  "started_at": "2026-10-19T12:43:55.956961+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-19T12:43:57.319630+00:00"
+}

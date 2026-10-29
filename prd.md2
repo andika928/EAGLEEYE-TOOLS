@@ -1,0 +1,122 @@
+Dokumen **Product Requirements Document (`prd.md`)** berikut dirancang dengan standar *Senior Security Engineer* untuk membangun platform **Attack Surface Management (ASM) & Automated Reconnaissance Validation** yang mengintegrasikan alur kerja penemuan aset, pemindaian terkalibrasi, penghapusan *false positive*, serta dasbor inspeksi bukti (*Evidence/Telemetry Viewer*).
+
+---
+
+# Product Requirements Document (PRD): ReconGuard ASM & Zero-False-Positive Validation Platform
+
+* **Nama Produk:** ReconGuard (Automated Recon & Evidence Validation Engine)
+* **Versi Dokumen:** 1.0.0
+* **Target Pengguna:** Security Engineer, Bug Bounty Hunter, Tim Penetration Testing, dan SOC/ASM Analyst
+* **Tujuan Utama:** Mengotomatiskan alur kerja *reconnaissance* (`subfinder` $\rightarrow$ `httpx` $\rightarrow$ `ffuf`) dengan mesin kalibrasi berlapis untuk mencapai **Zero False Positive**, dilengkapi antarmuka visual untuk memverifikasi bukti HTTP (*Request/Response Evidence*) secara langsung.
+
+---
+
+## 1. Latar Belakang & Masalah Utama (Problem Statement)
+
+Dalam pengujian keamanan aplikasi web dan *bug bounty*, penggabungan alat *open-source* secara manual sering menimbulkan tiga masalah utama:
+
+1. **Tingginya *False Positive* (Noise):** Konfigurasi *Web Application Firewall* (WAF), *Content Delivery Network* (CDN seperti CloudFront/Cloudflare), serta halaman *Soft-404* atau *Catch-All Redirect* sering mengembalikan status `HTTP 200 OK` palsu pada ribuan *endpoint*.
+2. **Fragmentasi Output:** Data dari alat enumerasi subdomain, *prober* HTTP, dan *fuzzer* direktori tersimpan di file teks terpisah sehingga sulit dianalisis secara korelatif.
+3. **Kurangnya Validasi Bukti Visual:** Penguji harus mengulang permintaan secara manual (misalnya di *proxy interceptor*) hanya untuk memastikan apakah suatu respons benar-benar valid atau sekadar halaman *default*/statis.
+
+---
+
+## 2. Arsitektur Alur Kerja Sistem (Pipeline Architecture)
+
+Sistem bekerja dalam 5 tahapan berurutan (*Modular Pipeline*) yang dikendalikan oleh *Rule Engine* penyaring *false positive*:
+
+| Tahap | Modul / Engine | Fungsi Teknis | Mekanisme Zero False Positive |
+| --- | --- | --- | --- |
+| **Stage 1** | **Scope & Policy Guard** | Validasi daftar domain/IP terhadap aturan *In-Scope* dan *Out-of-Scope* (Regex). | Memblokir otomatis aset di luar cakupan sebelum paket jaringan dikirim. |
+| **Stage 2** | **Asset Discovery (`Subfinder` Core)** | Enumerasi subdomain pasif dari sumber OSINT dan sertifikat SSL/TLS. | Resolusi DNS berlapis untuk membuang *wildcard DNS* (domain yang merespons semua subdomain acak dengan IP yang sama). |
+| **Stage 3** | **HTTP Probing (`Httpx` Core)** | Memeriksa host aktif, mengekstrak *status code*, *title*, *tech stack*, dan *header* CDN/WAF. | Mengelompokkan host berdasarkan kesamaan *DOM Hash* dan *Favicon Hash* untuk mendeteksi halaman parkir atau *default gateway*. |
+| **Stage 4** | **Calibrated Fuzzing (`Ffuf` Core)** | Enumerasi direktori dan *endpoint* secara terarah berdasarkan teknologi yang terdeteksi. | **Auto-Calibration Baseline:** Mengirim 3 *request* ke path acak terlebih dahulu untuk merekam ukuran *byte*, jumlah kata, jumlah baris, dan struktur *response* error bawaan server. |
+| **Stage 5** | **Evidence & Diff Engine** | Menyimpan pasangan *Raw HTTP Request/Response* dan menampilkan perbandingan visual di UI. | Hanya menampilkan temuan jika struktur respons berbeda secara signifikan dari *baseline* dan bukan merupakan pantulan *cache* statis. |
+
+---
+
+## 3. Spesifikasi Fitur Utama (Core Functional Requirements)
+
+### 3.1. Mesin Anti-False Positive (Multi-Factor Verification Engine)
+
+Agar temuan tidak menghasilkan *false positive*, sistem menerapkan 4 lapis penyaringan otomatis sebelum menandai *endpoint* sebagai **Verified Anomaly**:
+
+* **Baseline Fingerprinting:** Sebelum memindai target, sistem menguji path acak yang pasti tidak ada (contoh: `/rg-baseline-check-99281a`) untuk mencatat profil *Soft-404* (ukuran *bytes*, jumlah kata, *line count*, dan *redirect location*).
+* **Structural & Content-Type Validation:** Jika pengujian mencari file konfigurasi atau API (`.json`, `.xml`), tetapi server mengembalikan `content-type: text/html` (seperti halaman *Single Page Application* React/Vue yang me-*render* `index.html` untuk semua rute), sistem otomatis membuang hasil tersebut.
+* **CDN & Cache Header Awareness:** Menganalisis *header* seperti `x-cache`, `via`, `cf-cache-status`, dan `etag` untuk membedakan antara respons asli dari *origin server* dengan halaman *fallback* statis dari *edge server*.
+* **Secondary Verification Probe:** Setiap temuan potensial diuji ulang secara otomatis dengan metode HTTP berbeda (`GET` vs `HEAD`) dan *User-Agent* standar untuk memastikan konsistensi respons.
+
+### 3.2. Dasbor Bukti & Inspeksi (Evidence & Telemetry Display)
+
+Antarmuka pengguna wajib menyediakan panel **Evidence Viewer** agar *engineer* dapat melihat bukti validasi secara instan tanpa membuka aplikasi eksternal:
+
+* **Side-by-Side HTTP Inspector:** Menampilkan *Raw HTTP Request* di sisi kiri dan *Raw HTTP Response* (beserta *syntax highlighting* untuk JSON/HTML/Header) di sisi kanan.
+* **Baseline Diff View:** Menampilkan perbandingan berdampingan antara **Respons Baseline (Normal/404)** dengan **Respons Temuan**, lengkap dengan penanda warna (*highlight*) pada bagian *header* atau *body* yang berbeda.
+* **One-Click Safe Export:** Fitur untuk menyalin bukti dalam format laporan Markdown (termasuk *trace ID*, *timestamp*, *request/response header* yang telah disensor dari token rahasia/kredensial pengguna) untuk dokumentasi audit.
+
+---
+
+## 4. Spesifikasi Teknis & Tech Stack (Rekomendasi Implementasi)
+
+Karena Anda terbiasa dengan ekosistem pengembangan web modern, berikut adalah arsitektur tumpukan teknologi (*tech stack*) yang optimal dan skalabel:
+
+* **Frontend (Dashboard & Evidence UI):**
+* **Framework:** Next.js (React) dengan TypeScript dan Tailwind CSS.
+* **Komponen Khusus:** `Monaco Editor` (untuk menampilkan *Raw Request/Response* dan fitur *Diff Viewer* layaknya VS Code / Burp Repeater).
+
+
+* **Backend & Worker Orchestrator:**
+* **API Server:** Go (Golang) atau Node.js / Laravel API untuk manajemen proyek, antrean tugas (*job queue*), dan penyimpanan laporan.
+* **Task Queue:** Redis + BullMQ / Asynq untuk mengatur antrean pemindaian secara asinkron dan menerapkan *rate-limiting* ketat agar tidak membebani server target.
+
+
+* **Database:**
+* **PostgreSQL:** Menyimpan data aset, riwayat pemindaian, metrik *baseline*, dan bukti temuan terverifikasi (menggunakan tipe data `JSONB` untuk menyimpan *HTTP headers*).
+
+
+
+---
+
+## 5. Skema Database Utama (Data Model)
+
+| Nama Tabel | Atribut Kunci (Columns) | Deskripsi |
+| --- | --- | --- |
+| **`programs`** | `id`, `name`, `in_scope_domains` (JSONB), `out_of_scope_regex` (JSONB), `max_rate_limit` | Menyimpan aturan batasan pengujian dan batas kecepatan (*requests per second*) agar tetap aman. |
+| **`assets`** | `id`, `program_id`, `subdomain`, `ip_address`, `http_status`, `tech_stack` (JSONB), `cdn_provider`, `is_alive` | Hasil gabungan dari modul *Subfinder* dan *Httpx*. |
+| **`baselines`** | `id`, `asset_id`, `random_path_status`, `content_length`, `word_count`, `line_count`, `body_hash`, `content_type` | Profil *fingerprint* respons standar/error dari setiap host untuk menyaring *false positive*. |
+| **`findings`** | `id`, `asset_id`, `endpoint_path`, `status_code`, `confidence_score`, `raw_request` (TEXT), `raw_response_headers` (JSONB), `raw_response_body` (TEXT), `diff_summary` | Menyimpan temuan yang lolos saringan validasi beserta bukti *telemetry* lengkap untuk ditampilkan di UI. |
+
+---
+
+## 6. Spesifikasi Antarmuka Pengguna (UI/UX Wireframe Layout)
+
+1. **Halaman Utama (Asset & Recon Matrix):**
+* Menampilkan daftar domain dan subdomain aktif dalam tabel interaktif.
+* Filter cepat berdasarkan kode status (`200`, `401`, `403`), teknologi (misal: `AtlassianEdge`, `CloudFront`, `Nginx`), dan jumlah anomali yang terverifikasi.
+
+
+2. **Halaman Detail Temuan (Zero-FP Evidence Workspace):**
+* **Bagian Atas (Metadata Bar):** Menampilkan URL lengkap, Status Code, Ukuran Respons (*Bytes*), Waktu Respons (*Latency*), dan skor *Confidence* (`100% Verified - Differs from Baseline`).
+* **Bagian Tengah (Split Pane Viewer):**
+* *Tab 1 - Request / Response:* Menampilkan teks mentah protokol HTTP/2 beserta *header* keamanan dan *body*.
+* *Tab 2 - Baseline Comparison (Diff):* Memperlihatkan mengapa temuan ini dinyatakan *True Positive* (misalnya: *"Baseline mengembalikan 303 bytes text/plain, sedangkan endpoint ini mengembalikan 4.120 bytes application/json"*).
+
+
+* **Bagian Bawah (Audit Notes & Report Generator):** Tombol untuk menandai status peninjauan (*Reviewed*, *Export to Markdown Report*, atau *Add to Ignore List*).
+
+
+
+---
+
+## 7. Guardrails Keamanan & Kepatuhan Operasional (Safety & Compliance)
+
+Untuk memastikan platform ini beroperasi sesuai standar etika pengujian keamanan profesional:
+
+* **Strict Scope Enforcement:** Sistem wajib menolak eksekusi pada domain yang tidak terdaftar di tabel `programs.in_scope_domains`.
+* **Safe-Method Probing Only:** Secara bawaan, modul validasi hanya menggunakan permintaan baca (`GET` / `HEAD`) yang tidak merusak integritas data pada server target.
+* **Automated Rate Limiting & Circuit Breaker:** Jika target mulai mengembalikan kode `HTTP 429 (Too Many Requests)` atau `503 (Service Unavailable)`, *worker* otomatis menghentikan pemindaian sementara (*backoff*) untuk mencegah gangguan layanan (*Denial of Service*).
+* **Custom Identification Header:** Mendukung penambahan *header* khusus (misalnya `X-Bug-Bounty-Researcher: username`) sesuai persyaratan program *bug bounty* resmi.
+
+---
+
+Apakah Anda ingin saya buatkan rancangan struktur folder proyek (misalnya menggunakan **Next.js + TypeScript** untuk bagian *Evidence Viewer UI*) atau skema SQL lengkap dari PRD di atas?

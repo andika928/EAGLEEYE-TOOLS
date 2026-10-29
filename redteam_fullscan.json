@@ -1,0 +1,71 @@
+{
+  "host": "experiences.crypto.com",
+  "observed_at": "2026-10-26T05:56:33.074142+00:00",
+  "coverage_gaps": [
+    "experiences.crypto.com: Response redirected outside the target host; attribution requires review"
+  ],
+  "open_ports": [
+    21,
+    22,
+    23,
+    25,
+    53,
+    80,
+    110,
+    135,
+    139,
+    143,
+    443,
+    445,
+    993,
+    995,
+    1723,
+    3306,
+    3389,
+    5432,
+    5900,
+    6379,
+    8000,
+    8080,
+    8443,
+    8888,
+    9090,
+    9200,
+    27017
+  ],
+  "subdomains": [],
+  "assets": [
+    {
+      "host": "experiences.crypto.com",
+      "ip": "202.3.218.137",
+      "status": 200,
+      "ports": "21 22 23 25 53 80 110 135 139 143 443 445 993 995 1723 3306 3389 5432 5900 6379 8000 8080 8443 8888 9090 9200 27017",
+      "tech": [],
+      "ssl": false,
+      "vulns": 0,
+      "grade": "?",
+      "tls": null,
+      "missing_headers": [],
+      "disclosed": [],
+      "error": "Response redirected outside the target host; attribution requires review",
+      "url": "http://experiences.crypto.com",
+      "observed_at": "2026-10-26T05:56:33.074142+00:00"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total_assets": 1,
+    "ssl": 0,
+    "no_ssl": 1,
+    "live": 1,
+    "down": 0,
+    "with_vulns": 0,
+    "clean": 0,
+    "unknown": 1,
+    "behind_cdn": 0,
+    "direct": 1,
+    "unique_tech": 0
+  },
+  "target": "experiences.crypto.com",
+  "base_url": "http://experiences.crypto.com"
+}

@@ -1,0 +1,50 @@
+{
+  "target": "paypal.me",
+  "status": "COMPLETED",
+  "tier": "ENTERPRISE",
+  "timestamp": "2026-10-20 06:37:45 UTC",
+  "summary": {
+    "assets_discovered": 2,
+    "ports_scanned": 8,
+    "templates_executed": 10,
+    "critical_findings": 0,
+    "high_findings": 0,
+    "medium_findings": 0,
+    "low_findings": 0
+  },
+  "assets": [
+    {
+      "host": "paypal.me",
+      "ip": "151.101.65.21",
+      "ports": "80, 443",
+      "status": 200,
+      "tech": [
+        "cloudflare"
+      ],
+      "grade": "A"
+    },
+    {
+      "host": "www.paypal.me",
+      "ip": "Discovered Subdomain",
+      "ports": "80, 443",
+      "status": 200,
+      "tech": [
+        "Cloudflare / Nginx"
+      ],
+      "grade": "A"
+    }
+  ],
+  "findings": [],
+  "soc_logs": [
+    "[14:37:18] INIT // DETTACK Enterprise Surface Recon started for target 'paypal.me'",
+    "[14:37:18] PHASE 1 [DNS/ASN] Resolved paypal.me -> 151.101.65.21",
+    "[14:37:18] PHASE 2 [SUBDOMAINS] Launching multi-threaded wordlist probe for *.paypal.me",
+    "[14:37:19] PHASE 2 [SUBDOMAINS] Completed: 1 live subdomain assets discovered",
+    "[14:37:19] PHASE 3 [PORTS] Scanning high-priority enterprise service ports on paypal.me",
+    "[14:37:19] PHASE 3 [PORTS] paypal.me open ports: 80, 443, 3000, 5000, 8000, 8080, 8443, 9000",
+    "[14:37:19] PHASE 4 [TECH PROFILING] Analyzing headers and security configurations on https://paypal.me",
+    "[14:37:22] PHASE 5 [NUCLEI/NESSUS ENGINE] Executing enterprise template library with captive-gate suppression",
+    "[14:37:45] PHASE 5 [NUCLEI/NESSUS ENGINE] Completed: 0 confirmed vulnerability findings",
+    "[14:37:45] SUMMARY // Enterprise Automated Recon cycle finished. All findings verified (0 false positives)."
+  ]
+}

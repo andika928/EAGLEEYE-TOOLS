@@ -1,0 +1,18 @@
+{
+  "id": "079b7c5c4ac74a218fd028ff8fdbb83b",
+  "target": "https://boyolali.go.id:443/admin/login",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "boyolali.go.id",
+  "started_at": "2026-10-18T13:25:40.684562+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "POST form skipped; this URL-only tool tests GET inputs."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-18T13:25:41.159893+00:00"
+}

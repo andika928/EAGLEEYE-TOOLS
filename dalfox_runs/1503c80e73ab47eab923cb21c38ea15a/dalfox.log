@@ -1,0 +1,2 @@
+[scan] https://www.vinted.com/catalog?search_text=imgurl&search_by_image_uuid=&search_by_image_id=&page=1&time=1792369646&search_id=4714357401 exceeded --scan-timeout (60s); cancelling target (stops at next checkpoint)
+Results written to C:\New folder (6)\dalfox_runs\1503c80e73ab47eab923cb21c38ea15a\dalfox.json

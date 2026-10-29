@@ -1,0 +1,18 @@
+{
+  "id": "f987533bc8be4e249ec76229d8070c40",
+  "target": "https://www.settle.com:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "www.settle.com",
+  "started_at": "2026-10-25T09:40:01.515608+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "Discovery page exceeds 256 KiB; no endpoints selected."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-25T09:40:02.156685+00:00"
+}

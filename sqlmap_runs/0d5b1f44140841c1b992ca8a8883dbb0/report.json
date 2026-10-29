@@ -1,0 +1,58 @@
+{
+  "id": "0d5b1f44140841c1b992ca8a8883dbb0",
+  "target": "https://www.paypal.com:443/myaccount/summary?intl=0",
+  "parameter": "intl",
+  "parameters": [
+    "intl"
+  ],
+  "scope_host": "www.paypal.com",
+  "started_at": "2026-10-20T07:06:25.582521+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "baseline": [
+    {
+      "url": "https://www.paypal.com:443/myaccount/summary?intl=0",
+      "checked_at": "2026-10-20T07:06:25.583213+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested."
+      ],
+      "status": 302,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Location": "https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=%3Fintl%3D0&YWRzZGRjb29raWU%3D=0U6sDSLncflaStv_dwA7NthIHyiq74MYi60fmJpCYNArRgCkbavx2yMfSxZbW1Sp58iApy4gvRox8MyBNYHn4DfIUPV4e8oWN91J3kEWEDhHn0SjFImGYSuzs_FfpmRK",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com 'unsafe-inline'; script-src 'nonce-5CJrzFzx+d8ljJtdkMcvDZS2MOrxjBwnO2WE/eZDsha4PAMm' 'self' https://*.paypal.com https://*.paypalobjects.com 'unsafe-inline' https://www.googletagmanager.com https://googletagmanager.com https://tagmanager.google.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://ade.googlesyndication.com https://adservice.google.com https://snap.licdn.com https://analytics.tiktok.com https://connect.facebook.net https://*.qualtrics.com; worker-src 'self' blob:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; object-src 'none'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com; connect-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://api.sprig.com https://browser-intake-datadoghq.com https://browser-intake-us5-datadoghq.com https://e-11666.adzerk.net https://ad.doubleclick.net https://d.agkn.com https://px.ads.linkedin.com https://prod.uidapi.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.g.doubleclick.net https://google.com https://adservice.google.com https://tps.doubleverify.com https://tracker.samplicio.us https://arttrk.com https://snap.licdn.com https://dc.ads.linkedin.com https://px4.ads.linkedin.com https://p.adsymptotic.com https://analytics.tiktok.com https://ads.tiktok.com https://connect.facebook.net https://www.facebook.com https://*.qualtrics.com; frame-src https://*.paypal.com https://www.googletagmanager.com https://*.qualtrics.com; form-action 'self' https://*.paypal.com https://*.qualtrics.com; base-uri 'self' https://*.paypal.com; media-src 'self' https://*.qualtrics.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 130,
+      "body_truncated": false,
+      "body_sample_sha256": "d327fc4230d514be59bd0a6e8b31e31aaf95bc4c5499e34b24cfb9c5bd746fc4",
+      "elapsed_ms": 560
+    },
+    {
+      "url": "https://www.paypal.com:443/myaccount/summary?intl=0",
+      "checked_at": "2026-10-20T07:06:26.144182+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested."
+      ],
+      "status": 302,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Location": "https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=%3Fintl%3D0&YWRzZGRjb29raWU%3D=Yy9zjm4YZpTesserEhYL54quefBmj8qIqYJa5mc61jAk~wE2xB2JloX7lTC6qpajuPcZp~OaqEbpZSW_lhdoISkJjhooP2g6gbvhlXSHoWrXDAXRZ9Wi4nfIJA7mT_BQ",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "Content-Security-Policy": "default-src 'self' https://*.paypal.com https://*.paypalobjects.com 'unsafe-inline'; script-src 'nonce-iiytlGiMvm1jJhkTTkXxDgMupkF2fGKVOYgA8CmbJcbSu6TZ' 'self' https://*.paypal.com https://*.paypalobjects.com 'unsafe-inline' https://www.googletagmanager.com https://googletagmanager.com https://tagmanager.google.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://ade.googlesyndication.com https://adservice.google.com https://snap.licdn.com https://analytics.tiktok.com https://connect.facebook.net https://*.qualtrics.com; worker-src 'self' blob:; img-src 'self' https: data: https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com; object-src 'none'; font-src 'self' https://*.paypal.com https://*.paypalobjects.com; connect-src 'self' https://*.paypal.com https://*.paypalobjects.com https://www.google-analytics.com https://www.analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://api.sprig.com https://browser-intake-datadoghq.com https://browser-intake-us5-datadoghq.com https://e-11666.adzerk.net https://ad.doubleclick.net https://d.agkn.com https://px.ads.linkedin.com https://prod.uidapi.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.g.doubleclick.net https://google.com https://adservice.google.com https://tps.doubleverify.com https://tracker.samplicio.us https://arttrk.com https://snap.licdn.com https://dc.ads.linkedin.com https://px4.ads.linkedin.com https://p.adsymptotic.com https://analytics.tiktok.com https://ads.tiktok.com https://connect.facebook.net https://www.facebook.com https://*.qualtrics.com; frame-src https://*.paypal.com https://www.googletagmanager.com https://*.qualtrics.com; form-action 'self' https://*.paypal.com https://*.qualtrics.com; base-uri 'self' https://*.paypal.com; media-src 'self' https://*.qualtrics.com; upgrade-insecure-requests;; report-uri https://www.paypal.com/csplog/api/log/csp",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "sampled_bytes": 130,
+      "body_truncated": false,
+      "body_sample_sha256": "d327fc4230d514be59bd0a6e8b31e31aaf95bc4c5499e34b24cfb9c5bd746fc4",
+      "elapsed_ms": 744
+    }
+  ],
+  "reason": "Baseline unreachable, blocked or redirected. Inspect the recorded status/error; SQLmap was not started.",
+  "finished_at": "2026-10-20T07:06:26.889696+00:00"
+}

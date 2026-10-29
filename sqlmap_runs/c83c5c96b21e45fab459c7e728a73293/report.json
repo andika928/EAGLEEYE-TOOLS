@@ -1,0 +1,54 @@
+{
+  "id": "c83c5c96b21e45fab459c7e728a73293",
+  "target": "https://www.vinted.com:443/personal_data_export/download?hash=04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054",
+  "parameter": "hash",
+  "parameters": [
+    "hash"
+  ],
+  "scope_host": "www.vinted.com",
+  "started_at": "2026-10-19T00:24:18.786063+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "baseline": [
+    {
+      "url": "https://www.vinted.com:443/personal_data_export/download?hash=04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054",
+      "checked_at": "2026-10-19T00:24:18.786442+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested.",
+        "HSTS header absent on this response; informational observation only."
+      ],
+      "status": 307,
+      "headers": {
+        "Server": "cloudflare",
+        "Location": "https://www.vinted.com/member/signup/select_type?ref_url=%2Fpersonal_data_export%2Fdownload%3Fhash%3D04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054"
+      },
+      "sampled_bytes": 165,
+      "body_truncated": false,
+      "body_sample_sha256": "1e5f159cf99d54f1b9f8401d076e4c9f6de00d188d6545f29ef91ac150273fe7",
+      "elapsed_ms": 509
+    },
+    {
+      "url": "https://www.vinted.com:443/personal_data_export/download?hash=04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054",
+      "checked_at": "2026-10-19T00:24:19.295753+00:00",
+      "state": "responded",
+      "observations": [
+        "Redirect recorded; destination was not requested.",
+        "HSTS header absent on this response; informational observation only."
+      ],
+      "status": 307,
+      "headers": {
+        "Server": "cloudflare",
+        "Location": "https://www.vinted.com/member/signup/select_type?ref_url=%2Fpersonal_data_export%2Fdownload%3Fhash%3D04b971450684550a6e2ba621794afbea77f2bf4377aa2f37f9482b1cbfafe054"
+      },
+      "sampled_bytes": 165,
+      "body_truncated": false,
+      "body_sample_sha256": "1e5f159cf99d54f1b9f8401d076e4c9f6de00d188d6545f29ef91ac150273fe7",
+      "elapsed_ms": 570
+    }
+  ],
+  "reason": "Baseline unreachable, blocked or redirected. Inspect the recorded status/error; SQLmap was not started.",
+  "finished_at": "2026-10-19T00:24:19.865685+00:00"
+}

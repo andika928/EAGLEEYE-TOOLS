@@ -1,0 +1,18 @@
+{
+  "id": "2d7b2257bc4a45c28b28ad4109660742",
+  "target": "https://sso.esaunggul.ac.id:443/",
+  "parameter": "",
+  "parameters": [],
+  "scope_host": "sso.esaunggul.ac.id",
+  "started_at": "2026-10-18T12:38:44.943999+00:00",
+  "state": "inconclusive",
+  "verdict": "INCONCLUSIVE",
+  "confirmed_vulnerabilities": 0,
+  "observations": [],
+  "reason": "No testable query links or GET forms found on this page. JavaScript-only and POST forms need a dedicated request-based assessment. No SQLmap test was possible.",
+  "discovery_notes": [
+    "POST form skipped; this URL-only tool tests GET inputs."
+  ],
+  "discovered_endpoints": [],
+  "finished_at": "2026-10-18T12:38:46.538963+00:00"
+}

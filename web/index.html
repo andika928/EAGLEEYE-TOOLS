@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EAGLEEYE | Security Operations</title>
+  <meta name="description" content="Offensive security threat modeling, vulnerability scanning, and incident checks in one platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=18">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230d1d33'/><path d='M50 14 79 25v22c0 19-12 32-29 40C33 79 21 66 21 47V25z' fill='none' stroke='%234d9cff' stroke-width='8'/></svg>">
+</head>
+<body class="dettack-app">
+  <!-- Layout Wrapper -->
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR (Matching DETTACK Screenshot) -->
+    <aside class="dettack-sidebar" id="sidebar">
+      <!-- Brand Header -->
+      <div class="sidebar-header">
+        <div class="brand-wrap">
+          <span class="brand-text-dettack"><span class="brand-blue">E</span>AGLEEYE</span>
+        </div>
+        <button class="sidebar-toggle-btn" id="btnToggleSidebar" title="Collapse / Expand sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        </button>
+      </div>
+
+      <!-- Add / Scan Category Group -->
+      <div class="sidebar-group">
+        <div class="group-header" id="grpAddHeader">
+          <span class="group-plus">+</span>
+          <span class="group-title">Add</span>
+          <svg class="group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="group-items" id="grpAddItems">
+          <button class="nav-item" data-view="view-full-scan">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M3 12h3m12 0h3M12 3v3m0 12v3"/>
+              <circle cx="12" cy="12" r="9" stroke-dasharray="4 4"/>
+            </svg>
+            <span>Full Scan</span>
+          </button>
+          <button class="nav-item" data-view="view-vulnerabilities">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Vulnerability Scan</span>
+          </button>
+          <button class="nav-item" data-view="view-incidents">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Incident Check</span>
+          </button>
+          <button class="nav-item" data-view="view-tools">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>Recon Tools</span>
+          </button>
+          <button class="nav-item active" data-view="view-reconguard">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+            <span>Active Recon</span>
+          </button>
+          <button class="nav-item" data-view="view-mobile">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span>Mobile Scanner</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Navigation Menu -->
+      <nav class="sidebar-menu">
+        <button class="nav-item" data-view="view-dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-view="view-assets">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <span>Asset Groups</span>
+        </button>
+
+        <button class="nav-item" data-view="view-vulnerabilities">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+          <span>All Findings</span>
+        </button>
+
+        <button class="nav-item" data-view="view-vulnerabilities">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          <span>Vulnerabilities</span>
+          <span class="nav-pill-badge" id="sideVulnBadge">8</span>
+        </button>
+
+        <button class="nav-item" data-view="view-incidents">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Incidents</span>
+        </button>
+
+        <button class="nav-item" data-view="view-resolved">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Resolved</span>
+        </button>
+
+        <button class="nav-item" data-view="view-history">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Report History</span>
+        </button>
+
+        <button class="nav-item" data-view="view-activity">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Activity</span>
+        </button>
+
+        <button class="nav-item" data-view="view-upgrade">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Enterprise Recon</span>
+          <span class="nav-pill-badge" style="background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.4);">TIER</span>
+        </button>
+      </nav>
+
+      <!-- Bottom Profile Section -->
+      <div class="sidebar-footer">
+        <div class="user-profile-row">
+          <div class="user-avatar">F</div>
+          <div class="user-meta">
+            <span class="user-name">frozzipies</span>
+            <span class="user-role">frozzipies</span>
+          </div>
+          <button class="btn-logout" title="Exit session">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+        <button class="btn-factory-reset" id="btnFactoryReset" title="Clear all scan data and reset to fresh state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>Factory Reset</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="app-main">
+      <!-- TOP STATUS BAR (Matching Screenshot 2 Target Header) -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <a href="https://ikhub.id" target="_blank" rel="noopener noreferrer" class="topbar-target-link" id="topbarTargetLink" title="Open target website">
+            <span class="topbar-target-tag" id="currentDomainTag">ikhub.id</span>
+            <svg class="topbar-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <span class="topbar-meta" id="topbarMeta">305 assets · last scan —</span>
+          <span class="scope-pill-crit" id="topbarCritPill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span id="topbarCritCountText">4</span> CRITICAL
+          </span>
+          <span class="scope-pill-findings" id="topbarFindingsPill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="11" r="1"/>
+              <line x1="12" y1="14" x2="12" y2="17"/>
+            </svg>
+            <span id="topbarFindingsCountText">76</span> findings
+          </span>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" id="btnExportPdf" title="Print/Export clean PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Generate PDF
+          </button>
+          <button class="topbar-btn" id="btnQuickReset" title="Reset / Restore PRD audit findings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Restore PRD
+          </button>
+        </div>
+      </header>
+
+      <!-- CONTENT PANES -->
+      <div class="app-content-viewport">
+
+        <!-- ================================================================= -->
+        <!-- VIEW 1: RUN A FULL SCAN (Exact Replica of Attached Image!)        -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-full-scan">
+          <div class="full-scan-canvas">
+            <!-- Constellation Background Elements & Floating Chips -->
+            <div class="canvas-ambient-glow"></div>
+            
+            <!-- Floating Data Chips (matching screenshot) -->
+            <div class="floating-chip chip-ip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              <span>A 104.21.10.93</span>
+            </div>
+
+            <div class="floating-chip chip-cname">
+              <span class="chip-type">CNAME</span>
+              <span>edge.cf.net</span>
+            </div>
+
+            <div class="floating-chip chip-asn">
+              <span class="asn-num">AS13335</span>
+              <span class="dot-sep">·</span>
+              <span>Cloudflare</span>
+            </div>
+
+            <div class="floating-chip chip-ports">
+              <span>:443 :8443 :2083</span>
+            </div>
+
+            <div class="floating-chip chip-hsts">
+              <span class="chip-type">HSTS</span>
+              <span>max-age 63072000</span>
+            </div>
+
+            <div class="floating-chip chip-tls">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>TLS 1.3 · LE R3</span>
+            </div>
+
+            <div class="floating-chip chip-cve-1">
+              <span>CVE-2024-3094</span>
+            </div>
+
+            <div class="floating-chip chip-cve-2">
+              <span>CVE-2023-44487</span>
+            </div>
+
+            <!-- Floating Tech Node Icons (Node.js, Docker, Kubernetes, React, Python, AWS, Nginx, Redis) -->
+            <div class="tech-node node-node">JS</div>
+            <div class="tech-node node-k8s">☸</div>
+            <div class="tech-node node-docker">🐳</div>
+            <div class="tech-node node-react">⚛</div>
+            <div class="tech-node node-github">🐙</div>
+            <div class="tech-node node-python">🐍</div>
+            <div class="tech-node node-aws">aws</div>
+            <div class="tech-node node-nginx">N</div>
+            <div class="tech-node node-redis">R</div>
+            <div class="tech-node node-postgres">🐘</div>
+            <div class="tech-node node-cloud">☁️</div>
+
+            <!-- Floating Live Recon Log Terminal (Top Right of Screenshot) -->
+            <div class="floating-recon-terminal" id="reconWidget">
+              <div class="terminal-dots">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+                <span class="terminal-title">recon.log</span>
+              </div>
+              <div class="terminal-code" id="reconLogContent">
+                <div class="line-cmd">$ subfinder -d &lt;target&gt;</div>
+                <div class="line-res">[+] api.&lt;target&gt;</div>
+                <div class="line-res">[+] cdn.&lt;target&gt;</div>
+                <div class="line-cmd">$ httpx -tech-detect</div>
+                <div class="line-res">[200] api · [nginx]</div>
+                <div class="line-cmd">$ nuclei -severity critical</div>
+                <div class="line-crit">[critical] CVE-2024-3094</div>
+              </div>
+            </div>
+
+            <!-- Floating Vuln Intel Widget (Bottom Right of Screenshot) -->
+            <div class="floating-vuln-intel">
+              <div class="intel-header">
+                <span>vuln intel</span>
+                <span class="live-indicator">● live</span>
+              </div>
+              <div class="intel-stat-row">
+                <span class="stat-name">critical</span>
+                <span class="stat-val val-crit" id="intelCritVal">3</span>
+              </div>
+              <div class="intel-stat-row">
+                <span class="stat-name">high</span>
+                <span class="stat-val val-high" id="intelHighVal">11</span>
+              </div>
+              <div class="intel-stat-row">
+                <span class="stat-name">medium</span>
+                <span class="stat-val val-med" id="intelMedVal">27</span>
+              </div>
+            </div>
+
+            <!-- Center Launcher Hero -->
+            <div class="center-hero-content">
+              <h1 class="hero-title">Run a full scan</h1>
+              <p class="hero-subtitle">Vulnerability scan and incident check, one input.</p>
+
+              <!-- Central Search Form (With 100% Bug-Free Input & Enter Logic) -->
+              <form class="scan-input-wrapper" id="fullScanForm" onsubmit="return false;">
+                <input 
+                  type="text" 
+                  id="targetSearchInput" 
+                  class="target-hero-input" 
+                  value="ikhub.id" 
+                  placeholder="Enter target domain, e.g. ikhub.id or infomaniak.com..."
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+                <button type="submit" class="btn-enter-pill" id="btnSubmitFullScan" title="Execute Full Recon Scan">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>
+                  <span>Enter</span>
+                </button>
+              </form>
+
+              <!-- Scan Options Dropdown Bar -->
+              <div class="scan-options-bar" id="btnToggleOptionsBar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                <span>Scan options</span>
+                <span class="options-spec" id="optionsSummaryText">Port scan: Quick · Auto-rescan: Off</span>
+                <svg class="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+
+                <!-- Hidden Dropdown Options Menu -->
+                <div class="scan-options-flyout" id="scanOptionsFlyout">
+                  <div class="flyout-item">
+                    <label>Port Scan Depth:</label>
+                    <select id="selPortDepth" class="flyout-select">
+                      <option value="quick" selected>Quick (Top 100 ports)</option>
+                      <option value="deep">Deep (Top 1000 ports)</option>
+                      <option value="full">Full (65,535 ports)</option>
+                    </select>
+                  </div>
+                  <div class="flyout-item">
+                    <label>Auto-rescan Cadence:</label>
+                    <select id="selAutoRescan" class="flyout-select">
+                      <option value="off" selected>Off</option>
+                      <option value="daily">Daily (24h)</option>
+                      <option value="weekly">Weekly (7d)</option>
+                    </select>
+                  </div>
+                  <div class="flyout-item">
+                    <label>Threat Modules:</label>
+                    <div class="checkbox-row">
+                      <label><input type="checkbox" id="chkOwaspLlm" checked> OWASP LLM Check</label>
+                      <label><input type="checkbox" id="chkStrideCheck" checked> STRIDE Engine</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer Notice Message -->
+              <p class="hero-notice">
+                We'll run both scans on this domain. Grab a coffee, it usually takes 25 to 40 minutes.<br>
+                Feel free to close this tab, we'll keep working in the background.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW: RECON TOOLS (6 active scanner modules)                      -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-tools">
+          <div class="view-wrapper">
+            <div class="tools-hero-card">
+              <h2 class="tools-title">Active Reconnaissance Tools</h2>
+              <p class="tools-subtitle">Run bounded reconnaissance modules against an authorized target. Senior validation packs preserve evidence, confidence, and coverage gaps.</p>
+              <form id="toolsScanForm" onsubmit="return false;">
+                <div class="tools-input-row">
+                  <input type="text" id="toolsTargetInput" class="tools-input" placeholder="Target domain or URL, e.g. example.com" autocomplete="off" spellcheck="false">
+                  <input type="text" id="toolsEndpointInput" class="tools-input" placeholder="Optional: full URL for SQLi/XSS/CSRF/SSRF/IDOR, e.g. https://site/item?id=1" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="tools-modules-row" id="toolsModulesRow">
+                  <label class="tool-checkbox"><input type="checkbox" value="portscanner" checked> Port Scanner</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="subenum" checked> Subdomains</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="dirbust" checked> Directories</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="secscan" checked> Headers / TLS</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="sqli_scanner" checked> SQL Injection</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="xss_scanner" checked> Reflected XSS</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="csrf_scanner"> CSRF</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="ssrf_scanner"> SSRF</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="idor_scanner"> IDOR</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="misconfig_scanner"> Misconfig</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="auth_scanner"> Auth/Session</label>
+                  <label class="tool-checkbox"><input type="checkbox" value="dapp_scanner"> dApp</label>
+                  <label class="tool-checkbox tool-checkbox-pack"><input type="checkbox" value="injection_audit"> Injection Attacks</label>
+                  <label class="tool-checkbox tool-checkbox-pack"><input type="checkbox" value="privilege_audit"> Privilege Escalation</label>
+                  <label class="tool-checkbox tool-checkbox-pack"><input type="checkbox" value="sensitive_data_audit"> Sensitive Data Exposure</label>
+                </div>
+                <label class="tools-authorization-check"><input type="checkbox" id="toolsAuthorizationConfirm"> I confirm I own this target or have explicit authorization to test it.</label>
+                <button type="submit" class="tools-run-btn" id="btnRunTools" title="Execute selected scanner modules">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>
+                  <span>Run Tools</span>
+                </button>
+              </form>
+            </div>
+            <section id="dalfoxTool" aria-label="Dalfox XSS tool"></section>
+            <section id="sqlmapTool" aria-label="SQLmap tool"></section>
+            <section id="httpWorkbench" aria-label="Manual HTTP security workbench"></section>
+            <div id="toolsResults"></div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW: MOBILE SCANNER (APK / IPA)                                  -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-mobile">
+          <div class="view-wrapper">
+            <div class="tools-hero-card">
+              <h2 class="tools-title">Mobile App Scanner</h2>
+              <p class="tools-subtitle">Start with passive App Store metadata when no binary is available, or upload an authorized APK/IPA for static analysis.</p>
+              <div class="mobile-mode-card">
+                <div class="mobile-mode-heading">
+                  <span class="mobile-mode-badge">NO BINARY REQUIRED</span>
+                  <strong>Apple App Store passive recon</strong>
+                </div>
+                <p>Collects public identity and release metadata only. It does not download the IPA, contact the app backend, or claim a vulnerability.</p>
+                <div class="mobile-store-row">
+                  <input type="url" id="mobileStoreUrlInput" class="tools-input" value="https://apps.apple.com/us/app/vinted-pre-loved-marketplace/id632064380" placeholder="https://apps.apple.com/us/app/example/id123456789">
+                  <button type="button" class="tools-run-btn" id="btnScanMobileStore" title="Analyze public App Store metadata">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span>Inspect metadata</span>
+                  </button>
+                </div>
+              </div>
+              <div class="mobile-mode-card ipatools-card">
+                <div class="mobile-mode-heading">
+                  <span class="mobile-mode-badge">GO CLI / LOCAL ACCOUNT</span>
+                  <strong>IPA acquisition with ipatools</strong>
+                  <span class="ipatools-status" id="ipatoolsStatus">Checking local CLI…</span>
+                </div>
+                <p>Uses the locally installed open-source <code>majd/ipatool</code> session. Authenticate privately in a terminal with <code>ipatool auth login</code>; this dashboard never accepts Apple credentials.</p>
+                <div class="ipatools-form-grid">
+                  <label><span>APP STORE ID</span><input type="text" id="ipatoolsAppId" class="tools-input" value="632064380" inputmode="numeric" placeholder="632064380"></label>
+                  <label><span>BUNDLE ID (ALTERNATIVE)</span><input type="text" id="ipatoolsBundleId" class="tools-input" placeholder="com.example.app"></label>
+                </div>
+                <div class="ipatools-controls">
+                  <label><input type="checkbox" id="ipatoolsMakeZip" checked> Create verified .zip copy</label>
+                  <label><input type="checkbox" id="ipatoolsAnalyze" checked> Run static IPA triage after download</label>
+                  <label><input type="checkbox" id="ipatoolsAuthorized"> I am entitled to download and authorized to assess this app</label>
+                  <button type="button" class="tools-run-btn" id="btnIPAToolsDownload">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download authorized IPA</span>
+                  </button>
+                </div>
+              </div>
+              <div class="mobile-mode-divider"><span>OR, WITH AN AUTHORIZED BINARY</span></div>
+              <div class="mobile-upload-row">
+                <input type="file" id="mobileFileInput" accept=".apk,.ipa" class="tools-input">
+                <button type="button" class="tools-run-btn" id="btnScanMobile" title="Analyze the selected file">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>
+                  <span>Scan</span>
+                </button>
+              </div>
+              <p class="mobile-scope-note">Only test applications you own or have explicit permission to assess. IPA-only checks and runtime checks remain marked “not tested” when you use an App Store URL.</p>
+            </div>
+            <div id="mobileResults"></div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW: RECONGUARD (Evidence-led Active Reconnaissance)            -->
+        <!-- ================================================================= -->
+        <section class="view-panel active" id="view-reconguard">
+          <div class="view-wrapper">
+            <!-- ReconGuard Hero Header Card -->
+            <div class="enterprise-hero-card">
+              <div class="enterprise-title-row">
+                <div class="enterprise-brand">
+                  <svg class="enterprise-star-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+                  <div>
+                    <span class="rg-eyebrow">ACTIVE RECONNAISSANCE / EVIDENCE DESK</span>
+                    <h2 class="enterprise-main-title">ReconGuard</h2>
+                  </div>
+                </div>
+                <div class="enterprise-pills-group">
+                  <span class="enterprise-badge-gold">SUBFINDER CORE</span>
+                  <span class="enterprise-badge-gold">HTTPX CORE</span>
+                  <span class="enterprise-badge-gold">CALIBRATED FFUF</span>
+                  <span class="enterprise-badge-gold">DALFOX</span>
+                  <span class="enterprise-badge-gold">NIKTO</span>
+                  <span class="proof-verified-chip" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.72rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 4px;">EVIDENCE GATED</span>
+                </div>
+              </div>
+              <p class="enterprise-desc">Map an authorized attack surface, reject wildcard and soft-404 noise, and keep every result attached to replayable evidence. ReconGuard reports observations first and only labels a vulnerability confirmed after independent impact validation.</p>
+
+              <div class="rg-trust-strip" role="note">
+                <span class="rg-trust-dot"></span>
+                <strong>Evidence policy</strong>
+                <span>Unverified scanner output stays in review. Coverage gaps stay visible. “No findings” never means “no vulnerabilities.”</span>
+              </div>
+
+              <!-- Scope & Control Form -->
+              <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 1.25rem; margin-top: 1.25rem;">
+                <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                  <div>
+                    <label style="display: block; font-size: 0.72rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem;">TARGET DOMAIN / HOST</label>
+                    <input type="text" class="tools-input" id="rgTargetInput" placeholder="infomaniak.com" value="infomaniak.com" style="width: 100%;">
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.72rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem;">IN-SCOPE DOMAIN RULES</label>
+                    <input type="text" class="tools-input" id="rgInScopeInput" placeholder="infomaniak.com, *.infomaniak.com" value="infomaniak.com, *.infomaniak.com" style="width: 100%;">
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.72rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem;">RATE LIMIT</label>
+                    <select class="tools-input" id="rgRateLimitInput" style="width: 100%; cursor: pointer;">
+                      <option value="10">10 req/s (Gentle)</option>
+                      <option value="15" selected>15 req/s (Standard)</option>
+                      <option value="25">25 req/s (Fast)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 2fr; gap: 0.75rem; margin-bottom: 1rem;">
+                  <div>
+                    <label style="display: block; font-size: 0.72rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem;">OUT-OF-SCOPE REGEX (BLACKLIST)</label>
+                    <input type="text" class="tools-input" id="rgOutOfScopeInput" placeholder=".*logout.*, .*\.corp\..*" value=".*logout.*" style="width: 100%;">
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.72rem; font-weight: 700; color: #94a3b8; margin-bottom: 0.3rem;">CUSTOM RESEARCHER IDENTIFICATION HEADER</label>
+                    <input type="text" class="tools-input" id="rgResearcherInput" placeholder="X-Bug-Bounty-Researcher: ReconGuard-Pentester" value="X-Bug-Bounty-Researcher: ReconGuard-Pentester" style="width: 100%;">
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                  <button class="enterprise-btn-gold" id="btnLaunchReconGuard" style="padding: 0.75rem 1.4rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 16px; height: 16px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <span>Launch Calibrated Recon Pipeline</span>
+                  </button>
+                  <button class="enterprise-btn-blue" id="btnExportReconGuardMd" style="padding: 0.75rem 1.4rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>Export Sanitized Markdown Report</span>
+                  </button>
+                  <span id="rgStatusIndicator" style="font-size: 0.85rem; color: #94a3b8; margin-left: 0.5rem;">Ready to probe</span>
+                </div>
+                <label class="rg-authorization-check">
+                  <input type="checkbox" id="rgAuthorizationConfirm">
+                  <span>I confirm I own this target or have explicit authorization to actively test it.</span>
+                </label>
+              </div>
+
+<!-- Unified automatic ReconGuard pipeline -->
+<div class="enterprise-recon-pipeline" style="margin-top:1.25rem;flex-wrap:wrap"><div class="pipeline-node" id="rgPipe1"><span>1. Scope Guard</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe2"><span>2. Subfinder (Wildcard Filter)</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe3"><span>3. Httpx (DOM Cluster)</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe4"><span>4. Calibrated Ffuf</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe5"><span>5. Dalfox (XSS Review)</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe6"><span>6. Nikto (Web Checks)</span></div>
+<span class="pipeline-separator">&rarr;</span>
+<div class="pipeline-node" id="rgPipe7"><span>7. Evidence & Diff Engine</span></div></div>
+
+              <!-- ReconGuard Key Metrics Grid -->
+              <div class="enterprise-stats-grid" style="margin-top: 1.25rem;">
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">In-Scope Assets</div>
+                  <div class="stat-box-val" id="rgStatAssets">0</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Baselines Calibrated</div>
+                  <div class="stat-box-val" id="rgStatBaselines">0</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Wildcards Eliminated</div>
+                  <div class="stat-box-val" id="rgStatWildcards" style="color: #38bdf8;">0</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Evidence Observations</div>
+                  <div class="stat-box-val" id="rgStatFindings" style="color: var(--coral-red);">0</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ReconGuard Navigation Tabs -->
+            <div class="enterprise-tabs-nav" style="margin-top: 1rem;">
+              <button class="enterprise-tab-btn active" data-rg-tab="tab-rg-findings">Observations & Evidence (<span id="rgFindingsCountBadge">0</span>)</button>
+              <button class="enterprise-tab-btn" data-rg-tab="tab-rg-assets">Asset Inventory & DOM Clusters</button>
+              <button class="enterprise-tab-btn" data-rg-tab="tab-rg-baselines">Soft-404 Baseline Fingerprints</button>
+              <button class="enterprise-tab-btn" data-rg-tab="tab-rg-logs">ReconGuard Scan Telemetry Log</button>
+            </div>
+
+            <!-- Tab 1: Findings & Evidence Inspector -->
+            <div class="rg-tab-pane active" id="tab-rg-findings">
+              <div id="rgFindingsContainer" style="display: grid; gap: 1rem; margin-top: 1rem;">
+                <div class="empty-state-card">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <div class="empty-state-title">No Active Findings</div>
+                  <p class="empty-state-desc">Click "Launch Calibrated Recon Pipeline" to execute the unified 7-stage pipeline against your target scope.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Asset Matrix -->
+            <div class="rg-tab-pane" id="tab-rg-assets" style="display: none;">
+              <div class="asset-table-section" style="margin-top: 1rem;">
+                <table class="asset-table">
+                  <thead>
+                    <tr>
+                      <th>HOSTNAME</th>
+                      <th style="width: 140px;">IP ADDRESS</th>
+                      <th style="width: 90px;">STATUS</th>
+                      <th>DOM CLUSTER ID</th>
+                      <th>CDN / EDGE</th>
+                      <th>TECH STACK</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rgAssetsTbody">
+                    <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">No assets probed yet.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tab 3: Baselines Table -->
+            <div class="rg-tab-pane" id="tab-rg-baselines" style="display: none;">
+              <div class="asset-table-section" style="margin-top: 1rem;">
+                <table class="asset-table">
+                  <thead>
+                    <tr>
+                      <th>TARGET HOST</th>
+                      <th style="width: 100px;">BASELINE HTTP</th>
+                      <th style="width: 120px;">AVG LENGTH</th>
+                      <th style="width: 100px;">AVG WORDS</th>
+                      <th style="width: 120px;">CATCH-ALL?</th>
+                      <th style="width: 140px;">SPA FALLBACK?</th>
+                      <th>CONTENT-TYPE</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rgBaselinesTbody">
+                    <tr><td colspan="7" style="text-align: center; color: #64748b; padding: 2rem;">No baselines calibrated yet.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tab 4: Telemetry Logs -->
+            <div class="rg-tab-pane" id="tab-rg-logs" style="display: none;">
+              <div style="background: #020617; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: #38bdf8; max-height: 480px; overflow-y: auto; line-height: 1.6;" id="rgLogTerminal">
+                <div>[00:00:00] Ready for ReconGuard execution...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 2: VULNERABILITIES VIEW (Matching Image 4 / image.png)       -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-vulnerabilities">
+          <div class="view-wrapper">
+            <!-- Vulnerability Rating Hero Card -->
+            <div class="vuln-rating-hero-card">
+              <div class="rating-hero-top">
+                <span class="rating-section-label">VULNERABILITY RATING</span>
+                <svg class="rating-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M12 8v4M12 16h.01" stroke="#ff3b4e" stroke-width="2.5"/>
+                </svg>
+              </div>
+
+              <div class="rating-score-block">
+                <div class="grade-letter-red" id="vulnRatingGrade">F</div>
+                <div class="score-fraction">
+                  <span class="score-current" id="vulnScoreVal">0</span>
+                  <span class="score-total">/ 100</span>
+                </div>
+              </div>
+
+              <div class="rating-hero-status" id="vulnRatingStatus">
+                Failing — critical exposure · <span id="ratingFindingsCount">8</span> findings
+              </div>
+
+              <!-- Horizontal Severity Progress Bars -->
+              <div class="severity-bars-block">
+                <span class="bars-label">FINDINGS BY SEVERITY</span>
+
+                <div class="sev-bar-item">
+                  <span class="sev-label crit-label">CRITICAL</span>
+                  <div class="bar-track"><div class="bar-fill fill-crit" id="barCrit" style="width: 25%;"></div></div>
+                  <span class="bar-count" id="countCrit">1</span>
+                </div>
+
+                <div class="sev-bar-item">
+                  <span class="sev-label high-label">HIGH</span>
+                  <div class="bar-track"><div class="bar-fill fill-high" id="barHigh" style="width: 80%;"></div></div>
+                  <span class="bar-count" id="countHigh">4</span>
+                </div>
+
+                <div class="sev-bar-item">
+                  <span class="sev-label med-label">MEDIUM</span>
+                  <div class="bar-track"><div class="bar-fill fill-med" id="barMed" style="width: 50%;"></div></div>
+                  <span class="bar-count" id="countMed">2</span>
+                </div>
+
+                <div class="sev-bar-item">
+                  <span class="sev-label low-label">LOW</span>
+                  <div class="bar-track"><div class="bar-fill fill-low" id="barLow" style="width: 25%;"></div></div>
+                  <span class="bar-count" id="countLow">1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Pills Row -->
+            <div class="vuln-controls-row">
+              <div class="vuln-filter-pills" id="vulnFilterPills">
+                <button class="pill-btn active" data-sev="ALL">All <span id="pillCountAll">8</span></button>
+                <button class="pill-btn pill-btn-crit" data-sev="CRITICAL"><span class="dot-red"></span> Critical <span id="pillCountCrit">1</span></button>
+                <button class="pill-btn pill-btn-high" data-sev="HIGH"><span class="dot-orange"></span> High <span id="pillCountHigh">4</span></button>
+                <button class="pill-btn pill-btn-med" data-sev="MEDIUM"><span class="dot-amber"></span> Medium <span id="pillCountMed">2</span></button>
+                <button class="pill-btn pill-btn-low" data-sev="LOW"><span class="dot-blue"></span> Low <span id="pillCountLow">1</span></button>
+              </div>
+
+              <div class="vuln-sort-wrapper">
+                <button class="sort-btn" id="btnSortVulns">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"/></svg>
+                  <span id="currentSortLabel">Sort: CVSS High</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Vulnerability Findings List (Matching Image 4) -->
+            <div class="vuln-findings-list" id="vulnFindingsList"></div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 3: ASSET GROUPS (Matching Screenshot 1 & 2)                 -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-assets">
+          <div class="view-wrapper">
+            <!-- TARGET SCOPE CARD (Exact Replica of Screenshot 2) -->
+            <div class="target-scope-card" id="targetScopeCard">
+              <div class="scope-header-row">
+                <a href="https://infomaniak.com" target="_blank" rel="noopener noreferrer" class="scope-target-link" id="scopeTargetLink" title="Open target website">
+                  <span class="scope-target-domain" id="scopeTargetDomain">infomaniak.com</span>
+                  <svg class="scope-ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+              <div class="scope-meta-row" id="scopeMetaText">
+                305 assets · last scan —
+              </div>
+              <div class="scope-badges-row">
+                <div class="scope-pill-crit" id="scopePillCrit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                  <span id="scopeCritCount">4</span> CRITICAL
+                </div>
+                <div class="scope-pill-findings" id="scopePillFindings">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <circle cx="12" cy="11" r="1"/>
+                    <line x1="12" y1="14" x2="12" y2="17"/>
+                  </svg>
+                  <span id="scopeFindingsCount">76</span> findings
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 Summary Metric Cards -->
+            <div class="summary-cards-row">
+              <div class="summary-card">
+                <div class="card-icon-title">
+                  <div class="icon-bubble icon-green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <span class="card-title">SSL / TLS</span>
+                </div>
+                <div class="card-metric"><span class="metric-main" id="sslCount">143/148</span><span class="metric-pct" id="sslPct">(97%)</span></div>
+                <div class="progress-bar-wrap"><div class="progress-fill fill-green" id="sslBar" style="width: 97%;"></div></div>
+                <div class="card-chips"><button class="chip chip-active" id="sslChipYes">SSL 143</button><button class="chip" id="sslChipNo">No SSL 5</button></div>
+              </div>
+
+              <div class="summary-card">
+                <div class="card-icon-title">
+                  <div class="icon-bubble icon-red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                  <span class="card-title">Live (2xx–3xx)</span>
+                </div>
+                <div class="card-metric"><span class="metric-main" id="liveCount">24/148</span><span class="metric-pct" id="livePct">(16%)</span></div>
+                <div class="progress-bar-wrap"><div class="progress-fill fill-red" id="liveBar" style="width: 16%;"></div></div>
+                <div class="card-chips"><button class="chip chip-active" id="liveChipYes">Live 24</button><button class="chip" id="liveChipNo">Down 124</button></div>
+              </div>
+
+              <div class="summary-card">
+                <div class="card-icon-title">
+                  <div class="icon-bubble icon-gray">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                  </div>
+                  <span class="card-title">Behind CDN</span>
+                </div>
+                <div class="card-metric"><span class="metric-main" id="cdnCount">7/148</span><span class="metric-pct" id="cdnPct">(5%)</span></div>
+                <div class="progress-bar-wrap"><div class="progress-fill fill-gray" id="cdnBar" style="width: 5%;"></div></div>
+                <div class="card-chips"><button class="chip chip-active" id="cdnChipYes">On CDN 7</button><button class="chip" id="cdnChipNo">Direct 141</button></div>
+              </div>
+
+              <div class="summary-card">
+                <div class="card-icon-title">
+                  <div class="icon-bubble icon-red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                  </div>
+                  <span class="card-title">With vulnerabilities</span>
+                </div>
+                <div class="card-metric"><span class="metric-main highlight-red" id="withVulnCount">30/148</span><span class="metric-pct" id="vulnPct">(20%)</span></div>
+                <div class="progress-bar-wrap"><div class="progress-fill fill-red" id="vulnBar" style="width: 20%;"></div></div>
+                <div class="card-chips"><button class="chip chip-active" id="vulnChipYes">Vulnerabilities 30</button><button class="chip" id="vulnChipNo">Clean 118</button></div>
+              </div>
+
+              <div class="summary-card">
+                <div class="card-icon-title">
+                  <div class="icon-bubble icon-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  </div>
+                  <span class="card-title">Unique tech</span>
+                </div>
+                <div class="card-metric" style="margin-top: 0.35rem;"><span class="metric-main" id="techCount">24</span></div>
+                <span class="sub-label">detected stacks</span>
+              </div>
+            </div>
+
+            <!-- Asset Inventory Table -->
+            <div class="asset-table-section">
+              <table class="asset-table" id="assetTable">
+                <thead>
+                  <tr>
+                    <th style="width: 70px;">PREVIEW</th>
+                    <th>ASSET / HOSTNAME</th>
+                    <th style="width: 90px;">STATUS</th>
+                    <th style="width: 120px;">PORTS</th>
+                    <th>TECHNOLOGIES DETECTED</th>
+                    <th style="width: 95px;">SECURITY</th>
+                    <th style="width: 75px;">VULNS</th>
+                    <th style="width: 60px;">GRADE</th>
+                  </tr>
+                </thead>
+                <tbody id="assetTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 4: DASHBOARD & STRIDE MATRIX                                 -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-dashboard">
+          <div class="view-wrapper">
+            <div class="stride-table-card">
+              <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color);">
+                <h3 style="color: #fff; font-size: 1.1rem;">STRIDE Threat Matrix & Architectural Decomposition</h3>
+              </div>
+              <table class="stride-table" id="strideTable">
+                <thead>
+                  <tr>
+                    <th style="width: 130px;">PILLAR</th>
+                    <th style="width: 220px;">COMPONENT</th>
+                    <th>ADVERSARIAL THREAT SCENARIO</th>
+                    <th>ARCHITECTURAL MITIGATION</th>
+                  </tr>
+                </thead>
+                <tbody id="strideTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 5: INCIDENTS                                                 -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-incidents">
+          <div class="view-wrapper" id="incidentsList"></div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 6: RESOLVED & REPORT HISTORY                                 -->
+        <!-- ================================================================= -->
+        <section class="view-panel" id="view-resolved">
+          <div class="view-wrapper">
+            <div class="empty-state-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="empty-state-title">Resolved Security Tickets</div>
+              <p class="empty-state-desc">Findings that have been successfully verified and patched appear here.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="view-history">
+          <div class="view-wrapper" id="historyTimeline"></div>
+        </section>
+
+        <section class="view-panel" id="view-activity">
+          <div class="view-wrapper">
+            <div class="empty-state-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <div class="empty-state-title">Real-Time Sensor Activity</div>
+              <p class="empty-state-desc">Live daemon probes and asynchronous task executions are streaming.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="view-upgrade">
+          <div class="view-wrapper">
+            <!-- Enterprise Hero Header -->
+            <div class="enterprise-hero-card">
+              <div class="enterprise-title-row">
+                <div class="enterprise-brand">
+                  <svg class="enterprise-star-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <h2 class="enterprise-main-title">EAGLEEYE Enterprise Tier</h2>
+                </div>
+                <div class="enterprise-pills-group">
+                  <span class="enterprise-badge-gold">UNLIMITED RECON</span>
+                  <span class="enterprise-badge-gold">NUCLEI / NESSUS ENGINE</span>
+                  <span class="proof-verified-chip" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 0.72rem; font-weight: 800; padding: 0.25rem 0.65rem; border-radius: 4px;">EVIDENCE REVIEW</span>
+                </div>
+              </div>
+              <p class="enterprise-desc">Unlimited automated surface recon, custom Nessus/Nuclei templates, and 24/7 dedicated SOC support. Full-spectrum continuous asset discovery, DNS telemetry, multi-port analysis, and automated CVE validation.</p>
+
+              <!-- Target & Action Bar -->
+              <div class="enterprise-controls-row">
+                <input type="text" class="tools-input" id="enterpriseTargetInput" placeholder="Enter target domain or URL (e.g. infomaniak.com)" style="max-width: 380px;">
+                <button class="enterprise-btn-gold" id="btnLaunchEnterpriseRecon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 15px; height: 15px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>Launch Automated Surface Recon</span>
+                </button>
+                <button class="enterprise-btn-blue" id="btnRunNucleiTemplates">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 15px; height: 15px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  <span>Run Nuclei / Nessus Templates</span>
+                </button>
+                <button class="site-gate-btn site-gate-btn-secondary" id="btnOpenNewTemplateModal" style="padding: 0.65rem 1.1rem; border-radius: 999px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 14px; height: 14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>+ New Custom Template</span>
+                </button>
+              </div>
+
+              <!-- Enterprise Key Metrics -->
+              <div class="enterprise-stats-grid">
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Assets Discovered</div>
+                  <div class="stat-box-val" id="statAssetsCount">0</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Ports Scanned</div>
+                  <div class="stat-box-val" id="statPortsCount">0</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Templates Active</div>
+                  <div class="stat-box-val" id="statTemplatesCount" style="color: #eab308;">10</div>
+                </div>
+                <div class="enterprise-stat-box">
+                  <div class="stat-box-label">Confirmed Vulns</div>
+                  <div class="stat-box-val" id="statVulnsCount" style="color: var(--coral-red);">0</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enterprise Tabs Navigation -->
+            <div class="enterprise-tabs-nav">
+              <button class="enterprise-tab-btn active" data-tab="tab-recon-stream">Automated Surface Recon & Telemetry</button>
+              <button class="enterprise-tab-btn" data-tab="tab-nuclei-library">Custom Nuclei & Nessus Templates</button>
+              <button class="enterprise-tab-btn" data-tab="tab-recon-findings">Enterprise Vulnerability Findings (<span id="findingsTabBadge">0</span>)</button>
+            </div>
+
+            <!-- Tab 1: Automated Surface Recon Stream -->
+            <div class="enterprise-tab-content" id="tab-recon-stream">
+              <div class="enterprise-recon-pipeline">
+                <div class="pipeline-node done" id="pipeNode1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>1. DNS & ASN Ingestion</span>
+                </div>
+                <span class="pipeline-separator">&rarr;</span>
+                <div class="pipeline-node done" id="pipeNode2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>2. Subdomain Discovery</span>
+                </div>
+                <span class="pipeline-separator">&rarr;</span>
+                <div class="pipeline-node done" id="pipeNode3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>3. Multi-Port Scan</span>
+                </div>
+                <span class="pipeline-separator">&rarr;</span>
+                <div class="pipeline-node done" id="pipeNode4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>4. Tech Stack Profiler</span>
+                </div>
+                <span class="pipeline-separator">&rarr;</span>
+                <div class="pipeline-node active" id="pipeNode5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span>5. Nuclei / Nessus Audit</span>
+                </div>
+              </div>
+
+              <!-- Live SOC Terminal Output -->
+              <div class="tool-subhead" style="margin-top: 0;">24/7 SOC Autonomous Telemetry Log</div>
+              <div class="enterprise-soc-terminal" id="enterpriseSocTerminal">// Awaiting command. Enter target domain above and click [Launch Automated Surface Recon] to trigger continuous surface mapping.</div>
+
+              <!-- Discovered Attack Surface Table -->
+              <div class="tool-subhead">Discovered Attack Surface Inventory</div>
+              <div class="asset-table-card" style="margin-bottom: 2rem;">
+                <table class="asset-table" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th>ASSET HOSTNAME</th>
+                      <th>RESOLVED IP</th>
+                      <th>PORTS</th>
+                      <th>STATUS</th>
+                      <th>TECHNOLOGIES</th>
+                      <th>SECURITY GRADE</th>
+                    </tr>
+                  </thead>
+                  <tbody id="enterpriseAssetsTableBody">
+                    <tr>
+                      <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No attack surface recon executed yet. Run the automated recon pipeline above.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tab 2: Custom Nuclei & Nessus Templates Library -->
+            <div class="enterprise-tab-content" id="tab-nuclei-library" style="display: none;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                <div style="color: var(--text-secondary); font-size: 0.88rem;">Select templates to execute or author custom YAML detection rules:</div>
+                <button class="site-gate-btn" id="btnSelectAllTemplates" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;">Select All Active</button>
+              </div>
+              <div class="templates-grid" id="enterpriseTemplatesGrid">
+                <!-- Dynamically loaded from /api/enterprise/templates -->
+              </div>
+            </div>
+
+            <!-- Tab 3: Enterprise Findings -->
+            <div class="enterprise-tab-content" id="tab-recon-findings" style="display: none;">
+              <div id="enterpriseFindingsContainer">
+                <div class="empty-state-card">
+                  <div class="empty-state-title">No Enterprise Findings Yet</div>
+                  <p class="empty-state-desc">Execute an automated surface recon or run Nuclei templates to populate verified vulnerability reports.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  <!-- Asset Details Inspector Drawer (Opens when clicking any asset row) -->
+  <div class="asset-inspector-drawer" id="assetInspectorDrawer">
+    <div class="inspector-backdrop" id="btnDismissInspector"></div>
+    <div class="inspector-panel">
+      <div class="inspector-header">
+        <div class="inspector-header-left">
+          <span class="inspector-status-badge" id="inspStatusBadge">200 OK</span>
+          <span class="inspector-grade-badge" id="inspGradeBadge">A</span>
+          <h3 class="inspector-title" id="inspHostTitle">app.infomaniak.com</h3>
+        </div>
+        <button class="inspector-close-btn" id="btnCloseInspector">&times;</button>
+      </div>
+      <div class="inspector-content" id="inspContentBody">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- VERIFIED PROOF EVIDENCE LIGHTBOX / MODAL (Triggered by clicking any Preview Thumbnail) -->
+  <div class="verified-proof-modal" id="verifiedProofModal">
+    <div class="proof-modal-backdrop" id="btnDismissProofModal"></div>
+    <div class="proof-modal-card">
+      <!-- Modal Header -->
+      <div class="proof-modal-header">
+        <div class="proof-header-left">
+          <span class="proof-verified-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            VERIFIED PROOF OF RECON
+          </span>
+          <h2 class="proof-target-url" id="proofModalHost">https://login.infomaniak.com</h2>
+          <span class="proof-status-pill" id="proofModalStatus">200 OK</span>
+        </div>
+        <div class="proof-header-right">
+          <button class="proof-action-btn proof-btn-replay" id="proofRunPocBtn" title="Run interactive real-time exploit PoC replay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Live PoC Replay</span>
+          </button>
+          <a href="https://login.infomaniak.com" target="_blank" rel="noopener noreferrer" class="proof-action-btn" id="proofOpenTargetBtn" title="Open live target in new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>Live Site</span>
+          </a>
+          <button class="proof-action-btn" id="proofCopyCurlBtn" title="Copy cURL replay command">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy cURL</span>
+          </button>
+          <button class="proof-close-btn" id="btnCloseProofModal" title="Close Preview">&times;</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Two-Column Layout: Visual Screen Proof + Technical Telemetry) -->
+      <div class="proof-modal-body">
+        <!-- Left: Realistic Full-Sized Screen Proof Mockup -->
+        <div class="proof-screen-viewport">
+          <div class="browser-frame-bar">
+            <div class="browser-frame-dots">
+              <span class="b-dot b-dot-r"></span>
+              <span class="b-dot b-dot-y"></span>
+              <span class="b-dot b-dot-g"></span>
+            </div>
+            <div class="browser-url-bar" id="proofUrlBarDisplay">https://login.infomaniak.com</div>
+            <span class="browser-ssl-lock">🔒 TLS 1.3</span>
+          </div>
+          <div class="proof-view-mode-tabs" id="proofViewTabs">
+            <button class="proof-tab-btn active" id="tabModeVisual" data-mode="visual" title="Display visual sharescreen web preview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>Visual Web Preview</span>
+            </button>
+            <button class="proof-tab-btn" id="tabModeTerminal" data-mode="terminal" title="Display interactive terminal PoC replay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span>Verified PoC Terminal</span>
+            </button>
+            <button class="proof-tab-btn" id="tabModeDiff" data-mode="diff" title="Display security patch diff">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span>Remediation Patch Diff</span>
+            </button>
+          </div>
+          <div class="browser-frame-content" id="proofScreenContent">
+            <!-- Full visual proof rendered here -->
+          </div>
+          <div class="terminal-poc-content" id="proofPocTerminal" style="display: none;">
+            <!-- Interactive live exploit console rendered here -->
+          </div>
+          <div class="diff-poc-content" id="proofDiffContent" style="display: none;">
+            <!-- Code fix diff rendered here -->
+          </div>
+        </div>
+
+        <!-- Right: Technical Pentest Evidence & Raw HTTP Dump -->
+        <div class="proof-telemetry-pane">
+          <div class="proof-section-title">VERIFICATION TELEMETRY & PROBE DATA</div>
+          <div class="proof-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Probe Engine:</span>
+              <span class="meta-val" id="proofProbeEngine">nuclei-v3.2.1 + httpx</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Response Time:</span>
+              <span class="meta-val" id="proofLatency">28 ms</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Resolved IP / ASN:</span>
+              <span class="meta-val" id="proofIpAsn">104.21.10.93 (AS13335 Cloudflare)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">TLS Cipher:</span>
+              <span class="meta-val" id="proofTlsInfo">TLS 1.3 · Let's Encrypt R3</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Security Grade:</span>
+              <span class="meta-val" id="proofGrade" style="color: var(--color-green); font-weight: 700;">Grade A (Enforced)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Proof Signature:</span>
+              <span class="meta-val meta-mono" id="proofSha">SHA256: 8f4b23d9...</span>
+            </div>
+          </div>
+
+          <div class="proof-section-title" style="margin-top: 1rem;">VERIFIED HTTP RESPONSE HEADERS</div>
+          <div class="raw-http-box" id="proofHttpBox">
+            <!-- Raw headers dump -->
+          </div>
+
+          <div class="proof-section-title" style="margin-top: 1rem;" id="proofVulnTitle">IDENTIFIED SECURITY FINDING</div>
+          <div class="proof-vuln-box" id="proofVulnBox">
+            <!-- Finding detail -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM NUCLEI / NESSUS TEMPLATE EDITOR MODAL -->
+  <div class="verified-proof-modal" id="customTemplateModal">
+    <div class="proof-modal-backdrop" id="btnDismissTemplateModal"></div>
+    <div class="proof-modal-card" style="max-width: 780px;">
+      <div class="proof-modal-header">
+        <div class="proof-header-left">
+          <span class="enterprise-badge-gold">CUSTOM TEMPLATE AUTHORING</span>
+          <h2 class="proof-target-url" id="templateModalTitle">New Nuclei / Nessus Template</h2>
+        </div>
+        <button class="inspector-close-btn" id="btnCloseTemplateModal">&times;</button>
+      </div>
+      <div style="padding: 1.5rem; overflow-y: auto; max-height: calc(90vh - 120px);">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">TEMPLATE ID</label>
+          <input type="text" class="tools-input" id="tmplInputId" placeholder="custom-cve-2024-endpoint" style="width: 100%;">
+        </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">NAME / TITLE</label>
+            <input type="text" class="tools-input" id="tmplInputName" placeholder="Sensitive API Endpoint Exposure" style="width: 100%;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">SEVERITY</label>
+            <select class="tools-input" id="tmplInputSeverity" style="width: 100%; cursor: pointer;">
+              <option value="CRITICAL">CRITICAL (9.0 - 10.0)</option>
+              <option value="HIGH" selected>HIGH (7.0 - 8.9)</option>
+              <option value="MEDIUM">MEDIUM (4.0 - 6.9)</option>
+              <option value="LOW">LOW (0.1 - 3.9)</option>
+              <option value="INFO">INFO (0.0)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">CVSS SCORE</label>
+            <input type="number" step="0.1" min="0" max="10" class="tools-input" id="tmplInputCvss" value="7.5" style="width: 100%;">
+          </div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">TAGS (Comma-separated)</label>
+          <input type="text" class="tools-input" id="tmplInputTags" placeholder="cve, api, rce, exposure, nessus" style="width: 100%;">
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">HTTP PROBE PATHS (Comma-separated)</label>
+          <input type="text" class="tools-input" id="tmplInputPaths" placeholder="/api/v1/debug, /internal/status" style="width: 100%;">
+        </div>
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">MATCH WORDS (Comma-separated text to trigger detection)</label>
+          <input type="text" class="tools-input" id="tmplInputWords" placeholder="debug_mode, api_secret, root_password" style="width: 100%;">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button class="site-gate-btn site-gate-btn-secondary" id="btnCancelTemplate">Cancel</button>
+          <button class="enterprise-btn-gold" id="btnSaveTemplate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Save Custom Template</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="scanner-toast" id="scannerToast">
+    <span class="toast-icon">✔</span>
+    <span class="toast-text" id="toastText">Action completed</span>
+  </div>
+
+  <link rel="stylesheet" href="/asset-review.css?v=2">
+  <script src="/asset-review.js?v=2"></script>
+  <script src="/app.js?v=19"></script>
+  <link rel="stylesheet" href="/sqlmap.css?v=2">
+  <script src="/sqlmap.js?v=2"></script>
+  <link rel="stylesheet" href="/dalfox.css?v=1">
+  <script src="/dalfox.js?v=1"></script>
+  <script src="/rg-unified.js?v=2"></script>
+  <link rel="stylesheet" href="/workbench.css?v=4">
+  <script src="/workbench.js?v=4"></script>
+</body>
+</html>
